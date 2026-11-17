@@ -1,0 +1,3057 @@
+<!doctype html>
+<html lang="en" data-visualize-standalone>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="referrer" content="no-referrer">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline' 'unsafe-eval' 'wasm-unsafe-eval' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://persistent.oaistatic.com/plugins/visualize/; style-src 'unsafe-inline' blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://persistent.oaistatic.com/plugins/visualize/charts/; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'">
+<title>Покупки — интерактивная таблица и аналитика</title>
+<style>:root{color-scheme:light dark;background:light-dark(rgb(255 255 255), rgb(24 24 24))}html,body{margin:0}body{box-sizing:border-box;padding:1rem;background:inherit}iframe{display:block;width:100%;height:calc(100vh - 2rem);margin:0 auto;border:0}</style>
+
+</head>
+<body>
+<iframe id="codex-visualization" sandbox="allow-scripts" referrerpolicy="no-referrer" title="Покупки — интерактивная таблица и аналитика" data-srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;en&quot; data-visualize-standalone&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;meta name=&quot;referrer&quot; content=&quot;no-referrer&quot;&gt;
+&lt;meta http-equiv=&quot;Content-Security-Policy&quot; content=&quot;default-src &#x27;none&#x27;; script-src &#x27;unsafe-inline&#x27; &#x27;unsafe-eval&#x27; &#x27;wasm-unsafe-eval&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://persistent.oaistatic.com/plugins/visualize/; style-src &#x27;unsafe-inline&#x27; blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com https://persistent.oaistatic.com/plugins/visualize/charts/; img-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; font-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; media-src blob: data: https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://esm.sh https://fonts.bunny.net https://fonts.googleapis.com https://fonts.gstatic.com https://unpkg.com; worker-src blob:; connect-src blob: data:; frame-src &#x27;none&#x27;; object-src &#x27;none&#x27;; base-uri &#x27;none&#x27;; form-action &#x27;none&#x27;&quot;&gt;
+&lt;title&gt;Покупки — интерактивная таблица и аналитика&lt;/title&gt;
+&lt;style&gt;:root {
+  color-scheme: light dark;
+  background-color: var(
+    --background,
+    var(--color-background-primary, light-dark(rgb(255 255 255), rgb(24 24 24)))
+  ) !important;
+
+  /* Agent-facing contract; keep in sync with SKILL.md. */
+  --background: var(
+    --color-background-primary,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --card: color-mix(in oklab, var(--foreground) 5%, var(--background));
+  --card-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --popover: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255), rgb(45 45 45))
+  );
+  --popover-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --primary: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --primary-foreground: var(
+    --color-text-inverse,
+    light-dark(rgb(255 255 255), rgb(13 13 13))
+  );
+  --secondary: var(
+    --color-background-secondary,
+    light-dark(rgb(255 255 255 / 96%), rgb(54 54 54 / 96%))
+  );
+  --secondary-foreground: var(
+    --color-text-primary,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --muted: color-mix(in srgb, var(--foreground) 10%, transparent);
+  --muted-foreground: var(
+    --color-text-secondary,
+    light-dark(rgb(26 28 31 / 49.4%), rgb(255 255 255 / 49.8%))
+  );
+  --accent: var(
+    --color-background-info,
+    light-dark(rgb(229 242 255), rgb(13 39 63))
+  );
+  --accent-foreground: var(
+    --color-text-info,
+    light-dark(rgb(51 156 255), rgb(131 195 255))
+  );
+  --destructive: var(
+    --color-text-warning,
+    light-dark(rgb(226 85 7), rgb(255 133 73))
+  );
+  --border: var(
+    --color-border-secondary,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+  --input: var(
+    --color-border-primary,
+    light-dark(
+      rgb(26 28 31 / 11.8%),
+      color-mix(in oklab, rgb(0 0 0) 10%, transparent)
+    )
+  );
+  --ring: var(
+    --color-ring-primary,
+    light-dark(rgb(51 156 255), rgb(131 195 255 / 76%))
+  );
+  --font-size-base: var(--font-text-md-size, 16px);
+  --blue: light-dark(rgb(51 156 255), rgb(51 156 255));
+  --orange: light-dark(rgb(226 85 7), rgb(251 106 34));
+  --green: light-dark(rgb(0 162 64), rgb(64 201 119));
+  --red: light-dark(rgb(224 46 42), rgb(255 103 100));
+  --purple: light-dark(rgb(146 79 247), rgb(173 123 249));
+  --yellow: light-dark(rgb(255 195 0), rgb(255 210 64));
+  --viz-series-1: light-dark(rgb(51 156 255), rgb(131 195 255));
+  --viz-series-2: light-dark(rgb(243 136 59), rgb(245 154 86));
+  --viz-series-3: light-dark(rgb(93 201 119), rgb(116 213 139));
+  --viz-series-4: light-dark(rgb(235 119 177), rgb(240 143 192));
+  --viz-series-5: light-dark(rgb(155 121 236), rgb(170 145 239));
+  --viz-series-6: light-dark(rgb(58 185 177), rgb(90 203 194));
+
+  /* Internal implementation variables; not part of the agent contract. */
+  --font-sans:
+    -apple-system-body, ui-sans-serif, -apple-system, system-ui, &quot;Segoe UI&quot;,
+    Helvetica, &quot;Apple Color Emoji&quot;, Arial, sans-serif, &quot;Segoe UI Emoji&quot;,
+    &quot;Segoe UI Symbol&quot;;
+  --font-mono:
+    ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;,
+    monospace;
+  --font-size-normal: max(11px, var(--font-size-base));
+  --font-size-tooltip: calc(var(--font-size-base) - 1px);
+  --font-size-small: max(11px, calc(var(--font-size-base) - 2px));
+  --font-size-h1: calc(var(--font-size-normal) * 1.7142857143);
+  --font-size-h2: calc(var(--font-size-normal) * 1.4285714286);
+  --font-size-h3: calc(var(--font-size-normal) * 1.2857142857);
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --icon-size: 16px;
+  --line-height-normal: calc(var(--font-size-normal) * 1.5);
+  --line-height-tooltip: calc(var(--font-size-tooltip) * 1.4285714286);
+  --line-height-small: calc(var(--font-size-small) + 4px);
+  --corner-shape: round;
+  --radius: var(--border-radius-lg, 8px);
+  --radius-sm: calc(var(--radius) * 0.5);
+  --radius-md: calc(var(--radius) * 0.75);
+  --radius-lg: var(--radius);
+  --radius-2xl: calc(var(--radius) * 2);
+  --radius-full: 9999px;
+  --shadow-sm: 0 1px 2px -1px rgb(0 0 0 / 8%);
+  --checkmark-image: url(&quot;data:image/svg+xml,%3Csvg xmlns=&#x27;http://www.w3.org/2000/svg&#x27; viewBox=&#x27;0 0 17 17&#x27;%3E%3Cpath d=&#x27;M12.8961 3.64101C13.1297 3.41418 13.4984 3.37523 13.7779 3.56581C14.0571 3.75635 14.1554 4.11331 14.0299 4.41347L13.9615 4.53847L7.71151 13.7045C7.59411 13.8767 7.4063 13.9877 7.19881 14.0072C6.99136 14.0267 6.78564 13.9533 6.63826 13.806L2.88826 10.056L2.79842 9.9457C2.6192 9.67407 2.64927 9.30496 2.88826 9.06581C3.12738 8.82669 3.49647 8.79676 3.76815 8.97597L3.8785 9.06581L7.03084 12.2182L12.8053 3.74941L12.8961 3.64101Z&#x27;/%3E%3C/svg%3E&quot;);
+
+  /* Legacy aliases; not part of the current agent contract. */
+  --viz-bg: transparent;
+  --viz-panel: var(--card);
+  --viz-border: var(--border);
+  --viz-text: var(--foreground);
+  --viz-muted: var(--muted-foreground);
+  --viz-accent: var(--primary);
+  --viz-accent-text: var(--primary-foreground);
+  --viz-accent-bg: var(--accent);
+  --viz-font-size: var(--font-size-base);
+  --viz-warning: var(--destructive);
+}
+
+:root[data-theme=&quot;light&quot;] {
+  color-scheme: light;
+}
+
+:root[data-theme=&quot;dark&quot;] {
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html &gt; body {
+  /* Preserve MCP aliases for older inline renderers without creating :root cycles. */
+  --color-background-primary: var(
+    --background,
+    light-dark(rgb(255 255 255), rgb(24 24 24))
+  );
+  --color-text-primary: var(
+    --foreground,
+    light-dark(rgb(26 28 31), rgb(255 255 255))
+  );
+  --color-border-secondary: var(
+    --border,
+    light-dark(rgb(26 28 31 / 8%), rgb(255 255 255 / 8.2%))
+  );
+
+  margin: 0;
+  padding: var(--visualize-paint-gutter, 0px);
+  color: var(--foreground);
+  background: transparent !important;
+  font-family: var(--font-sans) !important;
+  -webkit-font-smoothing: antialiased;
+  font-size: var(--font-size-base);
+  line-height: calc(var(--font-size-base) * 1.625);
+  font-weight: var(--font-weight-normal);
+}
+
+.cursor-interaction {
+  cursor: var(--cursor-interaction, pointer);
+}
+
+a {
+  color: color-mix(in srgb, var(--viz-accent) 80%, var(--viz-text) 20%);
+  cursor: var(--cursor-interaction, pointer);
+  text-decoration: none;
+  text-underline-offset: 2px;
+  font-weight: inherit;
+}
+
+a:is(:hover, :focus-visible) {
+  text-decoration-line: underline;
+  text-decoration-style: dashed;
+  text-decoration-thickness: 0.5px;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin-block: 0;
+}
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li,
+.table {
+  font-family: var(--font-sans);
+}
+
+h1 {
+  font-size: calc(var(--font-size-base) * 1.5);
+  line-height: 1.3333333333;
+}
+
+h2 {
+  font-size: calc(var(--font-size-base) * 1.25);
+  line-height: 1.4;
+}
+h3 {
+  font-size: calc(var(--font-size-base) * 1.125);
+  line-height: 1.5555555556;
+}
+h4 {
+  font-size: var(--font-size-base);
+  line-height: 1.5;
+}
+h5,
+h6 {
+  font-size: var(--font-size-base);
+  line-height: calc(var(--font-size-base) * 1.625);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+b,
+strong,
+th {
+  font-weight: 600;
+}
+
+code:not(pre code) {
+  display: inline;
+  padding: 1px 6px;
+  border-radius: var(--radius-sm);
+  corner-shape: var(--corner-shape);
+  background: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 0.92em;
+  overflow-wrap: anywhere;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  word-break: break-word;
+}
+pre,
+pre code {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  line-height: 20px;
+}
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  scrollbar-width: thin;
+}
+
+.table {
+  width: 100%;
+  color: var(--foreground);
+  font: inherit;
+  text-align: start;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: calc(var(--font-size-base) * 0.875);
+  line-height: calc(var(--font-size-base) * 1.625);
+  font-family: var(--font-sans);
+}
+
+.table :is(th, td) {
+  padding-block: 10px;
+  padding-inline: 0 24px;
+  overflow-wrap: anywhere;
+  border-bottom: 1px solid var(--border);
+  text-align: start;
+  vertical-align: top;
+  border-bottom-color: color-mix(in srgb, var(--foreground) 5%, transparent);
+}
+.table :is(th, td):not(:last-child) {
+  padding-inline-end: calc(var(--font-size-base) * 1.5);
+}
+
+.table-responsive &gt; .table :is(th, td) {
+  overflow-wrap: break-word;
+}
+
+.table :is(th, td):last-child {
+  padding-inline-end: 0;
+}
+
+.table :is(caption, thead th) {
+  font-weight: 600;
+}
+
+.table thead :is(th, td) {
+  border-bottom-color: var(--border-strong, var(--input));
+  padding-block: calc(var(--font-size-base) / 2);
+  line-height: var(--font-size-base);
+}
+
+.table tbody tr:last-child :is(th, td) {
+  border-bottom: 0;
+}
+.table tbody :is(th, td) {
+  padding-block: calc(var(--font-size-base) * 0.625);
+}
+
+.table.table-sm :is(th, td) {
+  padding-block: 8px;
+}
+
+.table.table-sm :is(th, td):not(:last-child) {
+  padding-inline-end: 16px;
+}
+
+.table :is(.text-end, [align=&quot;right&quot;]) {
+  text-align: end;
+  font-variant-numeric: tabular-nums;
+}
+
+.table :is(.text-center, [align=&quot;center&quot;]) {
+  text-align: center;
+}
+
+.table .text-nowrap {
+  white-space: nowrap;
+}
+
+#widget {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  padding: 0;
+  background: transparent !important;
+}
+
+.card {
+  min-width: 0;
+  padding: 12px;
+  overflow: hidden;
+  overflow-wrap: break-word;
+  border-radius: var(--radius-2xl);
+  corner-shape: var(--corner-shape);
+  color: var(--card-foreground);
+  background: var(--card);
+}
+
+.widget {
+  min-width: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-lg);
+  corner-shape: var(--corner-shape);
+  box-shadow: 0 0 0 0.5px var(--border-strong, var(--border));
+  color: var(--foreground);
+  background: var(--background);
+}
+
+#widget &gt; :not(.card, .widget, .progress) {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.tooltip {
+  position: fixed;
+  z-index: 50;
+  top: 0;
+  left: 0;
+  width: max-content;
+  max-width: min(
+    20rem,
+    var(--tooltip-available-width, calc(100vw - 10px)),
+    calc(100vw - 10px)
+  );
+  max-height: min(
+    var(--tooltip-available-height, calc(100vh - 10px)),
+    calc(100vh - 10px)
+  );
+  border: 1px solid var(--border);
+  corner-shape: var(--corner-shape);
+  overflow-wrap: break-word;
+  white-space: normal;
+  pointer-events: none;
+  user-select: none;
+  font-family: var(--font-sans);
+  padding: 5px 12px;
+  border-color: color-mix(
+    in oklab,
+    light-dark(var(--primary-foreground), var(--foreground)) 5%,
+    transparent
+  );
+  border-radius: var(--radius-2xl);
+  color: light-dark(var(--primary-foreground), var(--foreground));
+  background: light-dark(var(--foreground), var(--popover));
+  box-shadow: 0 8px 18px rgb(15 23 42 / 20%);
+  letter-spacing: -0.15px;
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: 600;
+  line-height: 18px;
+  text-align: center;
+}
+
+.viz-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(max(180px, 24%), 1fr));
+  gap: 10px;
+}
+
+.viz-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.viz-stat-value {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-medium);
+  line-height: 1.25;
+}
+
+.viz-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+hr {
+  width: 100%;
+  height: 1px;
+  margin-block: 6px;
+  border: 0;
+  background: var(--border);
+}
+
+.nav {
+  display: flex;
+  min-width: 0;
+  align-items: center;
+  gap: 4px;
+}
+
+.progress {
+  display: flex;
+  height: 8px;
+  margin-block: calc((var(--line-height-normal, 1.5em) - 8px) / 2);
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+}
+
+.progress-bar:only-child {
+  border-radius: var(--radius-full);
+}
+
+.progress-bar {
+  height: 100%;
+  flex-shrink: 0;
+  border: 0;
+  background: var(--viz-series-1);
+}
+
+.viz-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  color: color-mix(in srgb, var(--foreground) 40%, var(--muted-foreground));
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  font-family: var(--font-sans);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 1;
+}
+
+small,
+.text-small {
+  font-size: var(--font-size-small);
+  line-height: var(--line-height-small);
+}
+
+.text-muted {
+  color: var(--muted-foreground);
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.viz-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.viz-controls &gt; .form-label {
+  display: grid;
+  min-width: min(100%, 260px);
+  flex: 1 1 280px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 2px 12px;
+  margin-bottom: 0;
+}
+
+.viz-controls &gt; .form-label &gt; :is(.form-control, .form-range, .form-select) {
+  grid-column: 1 / -1;
+}
+
+.btn,
+.nav-link,
+.form-check-input,
+.form-control,
+.form-range,
+.form-select {
+  font: inherit;
+}
+
+/* Match inline alignment without overriding a containing flex or grid layout. */
+.btn,
+.nav-link,
+.form-control,
+.form-select,
+.form-range,
+.form-check {
+  vertical-align: middle;
+}
+
+.btn,
+.nav-link {
+  --btn-size: calc(12px + 2 * var(--control-spacing, 12px));
+  appearance: button;
+  display: inline-flex;
+  inline-size: fit-content;
+  max-inline-size: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 8px;
+  -webkit-app-region: no-drag;
+  border: 1px solid var(--input);
+  corner-shape: var(--corner-shape);
+  cursor: var(--cursor-interaction, pointer);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  user-select: none;
+  -webkit-font-smoothing: inherit;
+  font-family: var(--font-sans);
+  height: fit-content;
+  min-height: var(--btn-size);
+  padding-inline: var(--control-spacing, 12px);
+  border-color: transparent;
+  border-radius: var(--radius-full);
+  color: var(--foreground);
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 18px;
+}
+
+.btn {
+  border-color: var(--border);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+}
+
+/* Codex Button size=&quot;compact&quot;; appearance stays with the button variant. */
+.btn-sm {
+  --btn-size: 24px;
+  padding-inline: 8px;
+  font-size: calc(var(--font-size-base) * 12 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 12 / 16), 1px);
+  line-height: 16px;
+}
+
+.btn:is(.btn-block, .viz-tile) {
+  inline-size: 100%;
+}
+
+.btn.viz-tile {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+a.btn {
+  cursor: var(--cursor-interaction, pointer);
+  text-decoration: none;
+}
+
+.btn:not(:disabled):hover {
+  background: light-dark(
+    color-mix(in srgb, var(--foreground) 5.5%, transparent),
+    color-mix(in srgb, var(--foreground) 8%, transparent)
+  );
+}
+
+.nav-link:not(:disabled):not([aria-disabled=&quot;true&quot;]):hover {
+  background: color-mix(in srgb, var(--foreground) 10%, transparent);
+}
+
+.btn-primary {
+  border-color: var(--border);
+  color: var(--primary-foreground);
+  background: var(--foreground);
+  background-clip: border-box;
+}
+
+.btn-primary .text-muted {
+  color: color-mix(in srgb, var(--primary-foreground) 50%, transparent);
+}
+
+.btn-primary:not(:disabled):hover {
+  background: color-mix(in srgb, var(--foreground) 80%, transparent);
+  background-clip: border-box;
+}
+
+.btn-ghost {
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.btn-ghost:not(:disabled):hover {
+  color: var(--muted-foreground);
+  background: light-dark(
+    color-mix(in srgb, var(--foreground) 5.5%, transparent),
+    color-mix(in srgb, var(--foreground) 8%, transparent)
+  );
+}
+
+.nav-pills .nav-link {
+  min-width: 0;
+  border-color: transparent;
+  color: var(--muted-foreground);
+  background: transparent;
+}
+
+.nav-justified .nav-link {
+  flex: 1 1 0;
+  overflow-wrap: anywhere;
+  white-space: normal;
+}
+
+.nav-pills .nav-link.active {
+  color: var(--foreground);
+  background: var(--muted);
+}
+
+/* Shared preview chrome; product styles stay inside each variant. */
+.viz-dotted-background {
+  background-image: radial-gradient(
+    circle,
+    color-mix(in srgb, var(--foreground) 14%, transparent) 0.8px,
+    transparent 0.8px
+  );
+  background-position: center;
+  background-size: 16px 16px;
+}
+
+.viz-carousel {
+  position: relative;
+  min-width: 0;
+}
+
+.viz-carousel:has(&gt; .viz-carousel-controls) {
+  min-height: calc(60px + var(--viz-carousel-picker-height, 0px));
+  padding-bottom: 60px;
+}
+
+.viz-carousel &gt; [data-variant][hidden] {
+  display: none !important;
+}
+
+.viz-carousel &gt; [data-variant] {
+  isolation: isolate;
+}
+
+.viz-carousel-controls {
+  --viz-carousel-hover: light-dark(
+    color-mix(in srgb, var(--foreground) 5.4%, transparent),
+    color-mix(in srgb, var(--foreground) 7.8%, transparent)
+  );
+  position: absolute;
+  z-index: 2;
+  bottom: 8px;
+  left: 50%;
+  display: flex;
+  width: max-content;
+  /* Leave room for the host&#x27;s design-controls launcher at the trailing edge. */
+  max-width: calc(100% - 96px);
+  align-items: center;
+  gap: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-sans);
+  /* Match the settings dropdown chrome independently of the content font size. */
+  font-size: 13px;
+  font-weight: var(--font-weight-normal);
+  line-height: 18px;
+  transform: translateX(-50%);
+  user-select: none;
+}
+
+/* Keep authored mockup button styles out of the shared carousel chrome. */
+.viz-carousel-controls button,
+.viz-carousel-picker &gt; summary {
+  display: flex !important;
+  height: auto !important;
+  min-height: 30px;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 4px;
+  padding: 0 6px !important;
+  -webkit-app-region: no-drag;
+  border: 0 !important;
+  border-radius: 14px !important;
+  color: inherit !important;
+  background: transparent !important;
+  font: inherit !important;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.viz-carousel-controls &gt; button,
+.viz-carousel-picker &gt; summary {
+  position: relative;
+  isolation: isolate;
+}
+
+.viz-carousel-controls &gt; button {
+  --icon-size: 16px;
+  width: 30px !important;
+  padding: 0 !important;
+}
+
+.viz-carousel-picker &gt; summary {
+  padding-inline: 12px !important;
+}
+
+.viz-carousel-controls .viz-carousel-caret {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  margin: 0;
+  color: inherit;
+  transform: rotate(180deg);
+}
+
+.viz-carousel-controls &gt; button &gt; svg,
+.viz-carousel-controls .viz-carousel-caret,
+.viz-carousel-count {
+  opacity: 0.5;
+}
+
+.viz-carousel-controls &gt; button::before,
+.viz-carousel-picker &gt; summary::before {
+  position: absolute;
+  z-index: -1;
+  inset: 3px;
+  border-radius: 12px;
+  content: &quot;&quot;;
+  pointer-events: none;
+}
+
+.viz-carousel-controls &gt; button:hover::before,
+.viz-carousel-picker &gt; summary:hover::before {
+  background: var(--viz-carousel-hover);
+}
+
+.viz-carousel-controls &gt; button,
+.viz-carousel-controls [data-lucide],
+.viz-carousel-controls .lucide {
+  flex-shrink: 0;
+}
+
+.viz-carousel-picker {
+  min-width: 0;
+}
+
+.viz-carousel-picker &gt; summary {
+  min-width: 0;
+  list-style: none;
+}
+
+.viz-carousel-picker &gt; summary::-webkit-details-marker {
+  display: none;
+}
+
+.viz-carousel-count {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.viz-carousel-name {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.viz-carousel-options {
+  position: absolute;
+  right: 0;
+  bottom: calc(100% + 4px);
+  left: 0;
+  display: flex;
+  max-height: 240px;
+  flex-direction: column;
+  gap: 2px;
+  overflow: auto;
+  padding: 4px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--background);
+  box-shadow: 0 4px 12px light-dark(rgb(0 0 0 / 6%), rgb(0 0 0 / 25%));
+}
+
+.viz-carousel-options &gt; button {
+  border-radius: max(0px, calc(var(--radius-lg) - 5px)) !important;
+  width: 100% !important;
+  min-height: 28px;
+  justify-content: flex-start !important;
+  padding: 4px 8px !important;
+  font-size: var(--font-size-small) !important;
+  text-align: start;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.viz-carousel-options &gt; [aria-current=&quot;true&quot;],
+.viz-carousel-options &gt; button:hover {
+  background: var(--viz-carousel-hover) !important;
+}
+
+.btn:disabled,
+.nav-link:disabled,
+.nav-link[aria-disabled=&quot;true&quot;] {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+[data-lucide] {
+  stroke-width: 1.6;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 6px;
+  color: var(--foreground);
+}
+
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 0 8px;
+  outline: none;
+  border: 1px solid var(--input);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  padding-inline: calc(4px + var(--control-spacing, 12px) / 2);
+  border-color: var(--input);
+  border-radius: var(--radius-md);
+  background: color-mix(in srgb, var(--popover) 96%, transparent);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.4285714286;
+}
+.form-control:is(
+  [type=&quot;file&quot;],
+  [type=&quot;date&quot;],
+  [type=&quot;datetime-local&quot;],
+  [type=&quot;month&quot;],
+  [type=&quot;week&quot;],
+  [type=&quot;color&quot;]
+) {
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  line-height: 18px;
+}
+.form-control:is(
+  [type=&quot;date&quot;],
+  [type=&quot;datetime-local&quot;],
+  [type=&quot;month&quot;],
+  [type=&quot;week&quot;]
+) {
+  padding-inline: var(--control-spacing, 12px);
+}
+
+.form-control::placeholder {
+  color: var(--muted-foreground);
+}
+
+.form-control[type=&quot;file&quot;] {
+  overflow: hidden;
+  cursor: var(--cursor-interaction, pointer);
+  padding: 0;
+}
+
+.form-control[type=&quot;file&quot;]::file-selector-button {
+  padding: 0 8px;
+  border: 0;
+  border-right: 1px solid var(--input);
+  color: var(--secondary-foreground);
+  background: var(--secondary);
+  cursor: inherit;
+  font: inherit;
+  min-height: calc(10px + 2 * var(--control-spacing, 12px));
+  padding-inline: var(--control-spacing, 12px);
+  margin-inline-end: var(--control-spacing, 12px);
+}
+
+.form-control[type=&quot;file&quot;]:not(:disabled):hover::file-selector-button {
+  background: color-mix(in srgb, var(--foreground) 6%, var(--secondary));
+}
+
+.form-control-color[type=&quot;color&quot;] {
+  width: 40px;
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  padding: 3px;
+  cursor: var(--cursor-interaction, pointer);
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+.form-control-color[type=&quot;color&quot;]::-webkit-color-swatch {
+  border: 0;
+  border-radius: calc(var(--radius-lg) - 4px);
+  corner-shape: var(--corner-shape);
+}
+
+textarea.form-control {
+  height: auto;
+  resize: vertical;
+  min-height: 96px;
+  padding: 8px 10px;
+}
+
+.form-control:focus-visible {
+  border-color: var(--ring);
+  box-shadow: none;
+}
+.form-control:disabled {
+  color: var(--muted-foreground);
+  background: color-mix(in srgb, var(--foreground) 5%, transparent);
+  opacity: 1;
+}
+.form-control[aria-invalid=&quot;true&quot;] {
+  border-color: var(--red);
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--red) 20%, transparent);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+  cursor: not-allowed;
+}
+
+.form-select {
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: fit-content;
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  margin: 0;
+  /* The secondary icon role is 14px at compact density and 16px at web density. */
+  --icon-size: calc(10px + var(--control-spacing, 12px) / 2);
+  /* Settings dropdowns retain a 12px inset and a 4px text-to-chevron gap. */
+  padding: 0 calc(16px + var(--icon-size)) 0 12px;
+  outline: none;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  corner-shape: var(--corner-shape);
+  color: var(--foreground);
+  background-color: var(--secondary);
+  background-image:
+    linear-gradient(
+      45deg,
+      transparent calc(50% - 0.6px),
+      var(--muted-foreground) calc(50% - 0.6px) calc(50% + 0.6px),
+      transparent calc(50% + 0.6px)
+    ),
+    linear-gradient(
+      135deg,
+      transparent calc(50% - 0.6px),
+      var(--muted-foreground) calc(50% - 0.6px) calc(50% + 0.6px),
+      transparent calc(50% + 0.6px)
+    );
+  background-position:
+    calc(100% - 12px - var(--icon-size) / 2) 50%,
+    calc(100% - 12px - var(--icon-size) * 0.18) 50%;
+  background-repeat: no-repeat;
+  background-size: calc(var(--icon-size) * 0.32) calc(var(--icon-size) * 0.32);
+  cursor: var(--cursor-interaction, default);
+  font-size: calc(var(--font-size-base) * 14 / 16);
+  font-size: round(nearest, calc(var(--font-size-base) * 14 / 16), 1px);
+  font-weight: var(--font-weight-normal);
+  line-height: 18px;
+}
+
+.form-select :is(option, optgroup) {
+  color: var(--popover-foreground);
+  background-color: var(--popover);
+}
+
+.form-select :is(option, optgroup):disabled {
+  color: var(--muted-foreground);
+}
+
+.form-select:not(:disabled):hover {
+  background-color: light-dark(
+    color-mix(in srgb, var(--foreground) 5.5%, transparent),
+    color-mix(in srgb, var(--foreground) 8%, transparent)
+  );
+}
+
+.form-select:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+}
+.form-select:disabled {
+  opacity: 0.4;
+}
+
+.form-check {
+  display: flex;
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  align-items: center;
+  gap: 6px;
+}
+
+.form-check-input {
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  flex: 0 0 auto;
+  margin: 0;
+  border: 1px solid var(--input);
+  color: var(--primary-foreground);
+  background-color: transparent;
+  cursor: var(--cursor-interaction, default);
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    box-shadow 150ms;
+}
+
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+  corner-shape: round;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  width: calc(10px + var(--control-spacing, 12px) / 2);
+  height: calc(10px + var(--control-spacing, 12px) / 2);
+  border-color: var(--border-strong, var(--input));
+  border-radius: calc(var(--radius-sm) / 2);
+  background-color: transparent;
+  color: var(--foreground);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input:not(:disabled):not(:checked):hover {
+  background-color: var(--card);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:is(:checked, :indeterminate) {
+  border-color: var(--border-strong, var(--input));
+  background-color: color-mix(in srgb, var(--popover) 96%, transparent);
+}
+
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:checked::before {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--primary-foreground);
+  content: &quot;&quot;;
+  mask: var(--checkmark-image) center / 12px 12px no-repeat;
+  background-color: var(--foreground);
+}
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;checkbox&quot;]:indeterminate::before {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 65%;
+  height: 6.65%;
+  margin: auto;
+  border-radius: var(--radius-full);
+  background: var(--foreground);
+  mask: none;
+  content: &quot;&quot;;
+}
+
+.form-check-input[type=&quot;radio&quot;] {
+  border-radius: var(--radius-full);
+  width: 16px;
+  height: 16px;
+  border: 0;
+  box-shadow: inset 0 0 0 1px var(--input);
+}
+
+.form-check-input[type=&quot;radio&quot;]:checked {
+  border: 0;
+  background: radial-gradient(
+    circle,
+    var(--primary-foreground) 0 3px,
+    var(--foreground) 3px
+  );
+  box-shadow: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+}
+.form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;]:focus-visible {
+  border-color: var(--ring);
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.form-check:not(.form-switch) .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+}
+.form-check:not(.form-switch) .form-check-input[type=&quot;radio&quot;]:disabled,
+.form-check:not(.form-switch)
+  .form-check-input[type=&quot;radio&quot;]:disabled
+  + .form-check-label {
+  opacity: 0.5;
+}
+
+.form-switch .form-check-input:disabled,
+.form-switch .form-check-input:disabled + .form-check-label {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.form-check-label {
+  color: var(--foreground);
+  cursor: var(--cursor-interaction, default);
+}
+
+.form-switch .form-check-input {
+  position: relative;
+  width: 32px;
+  height: 20px;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: var(--muted);
+  box-shadow: none;
+  transition: background-color 200ms cubic-bezier(0, 0, 0.2, 1);
+}
+
+.form-switch .form-check-input::before {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+  border: 1px solid light-dark(var(--primary-foreground), var(--foreground));
+  border-radius: var(--radius-full);
+  box-shadow: var(--shadow-sm);
+  content: &quot;&quot;;
+  transform: translate(2px, -50%);
+  transition: transform 200ms cubic-bezier(0, 0, 0.2, 1);
+  border-color: #fff;
+  background: #fff;
+}
+
+.form-switch .form-check-input:checked {
+  background: var(--blue);
+}
+
+.form-switch .form-check-input:checked::before {
+  transform: translate(14px, -50%);
+}
+
+.form-switch .form-check-input:focus-visible {
+  box-shadow: 0 0 0 2px var(--ring);
+  outline: none;
+}
+
+.form-range {
+  appearance: none;
+  display: block;
+  width: 100%;
+  flex: 1;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  accent-color: var(--primary);
+  height: calc(12px + 2 * var(--control-spacing, 12px));
+  min-height: calc(12px + 2 * var(--control-spacing, 12px));
+  outline: none;
+  border-radius: var(--radius-full);
+  color: var(--foreground);
+  background: transparent;
+}
+
+.form-range::-webkit-slider-runnable-track {
+  background: var(--form-range-track, var(--border));
+  height: 2px;
+  border-radius: var(--radius-full);
+}
+
+.form-range::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  margin-top: -9px;
+  border-color: transparent;
+  background: currentColor;
+  box-shadow: var(--shadow-sm);
+}
+
+/* Outline the native track and thumb, preserving the larger input hit area. */
+.form-range:focus-visible::-webkit-slider-runnable-track {
+  outline: 2px auto Highlight;
+  outline-color: -webkit-focus-ring-color;
+}
+
+.form-range::-moz-range-track {
+  background: var(--form-range-track, var(--border));
+  height: 2px;
+  border-radius: var(--radius-full);
+}
+
+.form-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-full);
+  border-color: transparent;
+  background: currentColor;
+  box-shadow: var(--shadow-sm);
+}
+
+.form-range:focus-visible::-moz-range-thumb {
+  outline: 2px solid Highlight;
+  outline-offset: 2px;
+}
+
+.form-range:disabled {
+  opacity: 1;
+  cursor: default;
+}
+
+.btn:not(.btn-primary, .viz-tile):is(
+  [aria-pressed=&quot;true&quot;],
+  [aria-selected=&quot;true&quot;],
+  .is-selected
+) {
+  border-color: transparent;
+  color: var(--primary-foreground);
+  background: var(--blue);
+}
+
+.btn.viz-tile:is([aria-pressed=&quot;true&quot;], [aria-selected=&quot;true&quot;], .is-selected) {
+  border-color: var(--primary);
+  box-shadow: inset 0 0 0 1px var(--primary);
+}
+
+.btn:focus-visible,
+.nav-link:focus-visible {
+  outline-offset: 2px;
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ring);
+}
+
+.viz-carousel-controls :is(button, summary):focus-visible {
+  outline: 2px solid var(--ring) !important;
+  outline-offset: 2px !important;
+}
+
+/* Web recipes are the default, including on renderers without inline style queries. */
+@supports (border-radius: if(style(--corner-shape: round): 1px; else: 2px)) {
+  /* Match the host&#x27;s proportional text-sm scale at every text preference. */
+  .tooltip,
+  .viz-badge,
+  .btn,
+  .nav-link,
+  .form-control,
+  .form-select {
+    font-size: if(
+      style(--corner-shape: round): round(
+          nearest,
+          calc(var(--font-size-base) * 14 / 16),
+          1px
+        );
+        else: round(nearest, calc(var(--font-size-base) * 13 / 14), 1px)
+    );
+  }
+
+  .btn-sm {
+    font-size: if(
+      style(--corner-shape: round): round(
+          nearest,
+          calc(var(--font-size-base) * 12 / 16),
+          1px
+        );
+        else: round(nearest, calc(var(--font-size-base) * 12 / 14), 1px)
+    );
+  }
+
+  .btn,
+  .nav-link,
+  .form-select {
+    border-radius: if(
+      style(--corner-shape: round): var(--radius-full); else: var(--radius-lg)
+    );
+  }
+
+  .form-check:not(.form-switch) .form-check-input[type=&quot;checkbox&quot;] {
+    border-radius: if(
+      style(--corner-shape: round): calc(var(--radius-sm) / 2);
+        else: calc(var(--radius-lg) * 0.4)
+    );
+  }
+
+  .tooltip {
+    font-weight: if(
+      style(--corner-shape: round): 600; else: var(--font-weight-normal)
+    );
+  }
+}
+
+@media (pointer: coarse) {
+  .viz-carousel:has(&gt; .viz-carousel-controls) {
+    min-height: calc(76px + var(--viz-carousel-picker-height, 0px));
+    padding-bottom: 76px;
+  }
+
+  .btn,
+  .nav-link,
+  .viz-carousel-controls button,
+  .viz-carousel-picker &gt; summary,
+  .form-control,
+  .form-select {
+    --btn-size: 44px;
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  /* Keep small-screen WebKit from zooming when a text field receives focus. */
+  .form-control,
+  .form-select {
+    font-size: max(16px, calc(var(--font-size-base) * 14 / 16));
+    font-size: max(
+      16px,
+      round(nearest, calc(var(--font-size-base) * 14 / 16), 1px)
+    );
+  }
+  .form-control:is(
+    [type=&quot;file&quot;],
+    [type=&quot;date&quot;],
+    [type=&quot;datetime-local&quot;],
+    [type=&quot;month&quot;],
+    [type=&quot;week&quot;],
+    [type=&quot;time&quot;],
+    [type=&quot;color&quot;]
+  ) {
+    height: 44px;
+    min-height: 44px;
+    font-size: max(16px, calc(var(--font-size-base) * 14 / 16));
+    font-size: max(
+      16px,
+      round(nearest, calc(var(--font-size-base) * 14 / 16), 1px)
+    );
+  }
+
+  .form-control[type=&quot;file&quot;]::file-selector-button {
+    min-width: 44px;
+    min-height: 44px;
+  }
+
+  .form-control-color[type=&quot;color&quot;] {
+    width: 44px;
+    height: 44px;
+  }
+
+  .form-control:is(
+    [type=&quot;date&quot;],
+    [type=&quot;datetime-local&quot;],
+    [type=&quot;month&quot;],
+    [type=&quot;time&quot;],
+    [type=&quot;week&quot;]
+  ) {
+    min-width: 0;
+    max-width: 100%;
+    padding-block: 8px;
+  }
+
+  .form-check {
+    min-height: 44px;
+    padding-inline: 15px;
+  }
+
+  .form-check-input {
+    position: relative;
+  }
+
+  .form-check-input::after {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    content: &quot;&quot;;
+    transform: translate(-50%, -50%);
+  }
+
+  .form-check-label {
+    display: inline-flex;
+    min-width: 44px;
+    min-height: 44px;
+    align-items: center;
+  }
+
+  .form-range {
+    height: 44px;
+    touch-action: pan-y;
+  }
+}
+
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+#widget &gt; svg {
+  width: 100%;
+}
+
+/* Model-authored chart rules can otherwise stretch icons after these styles load. */
+svg.lucide {
+  display: block;
+  width: var(--icon-size) !important;
+  height: var(--icon-size) !important;
+  flex: none;
+  margin: 0 !important;
+  stroke-width: 1.6;
+}
+
+.text-warning,
+.text-destructive {
+  color: var(--destructive);
+}
+
+html&gt;body{padding:0}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;script type=&quot;application/json&quot; id=&quot;codex-visualization-widget-state&quot;&gt;__CODEX_VISUALIZATION_WIDGET_STATE__&lt;/script&gt;
+&lt;script&gt;(() =&gt; {
+  const root = document.documentElement;
+  const mediaQuery = globalThis.matchMedia(&quot;(prefers-color-scheme: dark)&quot;);
+  const apply = Reflect.apply;
+  const isArray = Array.isArray;
+  const hasOwn = Object.hasOwn;
+  const parentWindow = globalThis.parent;
+  const stringify = JSON.stringify;
+  const parse = JSON.parse;
+  const encode = TextEncoder.prototype.encode.bind(new TextEncoder());
+  const initialStateElement = document.getElementById(
+    &quot;codex-visualization-widget-state&quot;,
+  );
+  const initialGlobals = parse(initialStateElement?.textContent ?? &quot;{}&quot;);
+  initialStateElement?.remove();
+  /** @type {Record&lt;string, unknown&gt; | null} */
+  let state = initialGlobals.widgetState ?? null;
+  const statePersistence = initialGlobals.statePersistence ?? &quot;none&quot;;
+  let nextStateRequestId = 0;
+  /** @type {Map&lt;number, { resolve: () =&gt; void; reject: (error: Error) =&gt; void; timeout: ReturnType&lt;typeof globalThis.setTimeout&gt;; serializedState: string }&gt;} */
+  const pendingStateWrites = new Map();
+  const persistenceError = () =&gt;
+    Object.assign(
+      new Error(&quot;The host could not persist the widget state update&quot;),
+      {
+        code: -32000,
+        data: { code: &quot;widget_state_persistence_failed&quot;, retryable: false },
+      },
+    );
+  /**
+   * @param {object} prototype
+   * @param {string} property
+   */
+  const getPrototypeGetter = (prototype, property) =&gt; {
+    // oxlint-disable-next-line typescript/unbound-method -- invoked through captured Reflect.apply
+    const getter = Object.getOwnPropertyDescriptor(prototype, property)?.get;
+    if (getter == null) {
+      throw new Error(`Missing ${property} getter`);
+    }
+    return getter;
+  };
+  const getMessageData = getPrototypeGetter(MessageEvent.prototype, &quot;data&quot;);
+  const getMessagePorts = getPrototypeGetter(MessageEvent.prototype, &quot;ports&quot;);
+  const getMessageSource = getPrototypeGetter(MessageEvent.prototype, &quot;source&quot;);
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const addHostMessageListener = MessagePort.prototype.addEventListener;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const postHostMessage = MessagePort.prototype.postMessage;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const startHostPort = MessagePort.prototype.start;
+  // oxlint-disable-next-line typescript/unbound-method -- captured before the untrusted fragment runs
+  const stopMessagePropagation = Event.prototype.stopImmediatePropagation;
+  /** @type {MessagePort | null} */
+  let hostPort = null;
+  const postToHost = (type, payload) =&gt; {
+    if (hostPort != null) {
+      apply(postHostMessage, hostPort, [{ type, ...payload }]);
+    }
+  };
+  const openExternal = ({ href }) =&gt; {
+    if (globalThis.navigator.userActivation?.isActive === true) {
+      postToHost(&quot;open-external&quot;, { href });
+    }
+  };
+  const sendFollowUpMessage = ({ context, prompt, title }) =&gt; {
+    if (globalThis.navigator.userActivation?.isActive === true) {
+      postToHost(&quot;follow-up&quot;, { context, prompt, title });
+    }
+    return Promise.resolve();
+  };
+  /**
+   * @param {Record&lt;string, unknown&gt; | ((previous: Record&lt;string, unknown&gt; | null) =&gt; Record&lt;string, unknown&gt;)} next
+   * @returns {Promise&lt;void&gt;}
+   */
+  const setWidgetState = async (next) =&gt; {
+    const nextState = typeof next === &quot;function&quot; ? next(state) : next;
+    if (
+      nextState == null ||
+      typeof nextState !== &quot;object&quot; ||
+      isArray(nextState)
+    ) {
+      throw new TypeError(&quot;Widget state must be a JSON object&quot;);
+    }
+    const inputState = stringify(
+      nextState,
+      (_key, /** @type {unknown} */ value) =&gt; {
+        if (
+          typeof value === &quot;undefined&quot; ||
+          typeof value === &quot;function&quot; ||
+          typeof value === &quot;symbol&quot; ||
+          (typeof value === &quot;number&quot; &amp;&amp; !Number.isFinite(value))
+        ) {
+          throw new TypeError(&quot;Widget state must be a JSON object&quot;);
+        }
+        return value;
+      },
+    );
+    const parsedState = parse(inputState);
+    if (
+      parsedState == null ||
+      typeof parsedState !== &quot;object&quot; ||
+      isArray(parsedState)
+    ) {
+      throw new TypeError(&quot;Widget state must be a JSON object&quot;);
+    }
+    const storedState = {
+      modelContent: null,
+      privateContent: null,
+      ...parsedState,
+    };
+    const serializedState = stringify(storedState);
+    if (encode(serializedState).length &gt; 16 * 1024) {
+      throw new TypeError(
+        &quot;Widget state must be a JSON object of at most 16 KiB&quot;,
+      );
+    }
+    if (
+      hasOwn(storedState, &quot;imageIds&quot;) &amp;&amp;
+      (!isArray(storedState.imageIds) ||
+        storedState.imageIds.some(
+          (/** @type {unknown} */ id) =&gt; typeof id !== &quot;string&quot;,
+        ))
+    ) {
+      throw new TypeError(&quot;Widget state imageIds must be an array of strings&quot;);
+    }
+    if (storedState.imageIds?.length &gt; 0) {
+      throw Object.assign(
+        new TypeError(&quot;Visualization state does not support image attachments&quot;),
+        { code: -32602, data: { code: &quot;images_unsupported&quot; } },
+      );
+    }
+    state = storedState;
+    globalThis.openai.widgetState = state;
+    globalThis.dispatchEvent(
+      new CustomEvent(&quot;openai:set_globals&quot;, {
+        detail: { globals: { widgetState: state } },
+      }),
+    );
+    if (statePersistence === &quot;none&quot;) {
+      throw persistenceError();
+    }
+    const id = ++nextStateRequestId;
+    return new Promise((resolve, reject) =&gt; {
+      const timeout = globalThis.setTimeout(() =&gt; {
+        pendingStateWrites.delete(id);
+        reject(persistenceError());
+      }, 30_000);
+      pendingStateWrites.set(id, { resolve, reject, timeout, serializedState });
+      postToHost(&quot;widget-state-write&quot;, { id, state: serializedState });
+    });
+  };
+  const bindingElement = document.getElementById(&quot;codex-visualization-bindings&quot;);
+  const mockElement = document.getElementById(&quot;codex-connector-mocks&quot;);
+  const fileElement = document.getElementById(&quot;codex-preview-files&quot;);
+  const connectorGlobals = {};
+  if (bindingElement != null || mockElement != null || fileElement != null) {
+    const bindings = parse(bindingElement?.textContent ?? &quot;{}&quot;);
+    bindingElement?.remove();
+    const values = new Map();
+    for (const [name, binding] of Object.entries(bindings)) {
+      if (binding.type === &quot;json&quot;) values.set(name, structuredClone(binding.value));
+    }
+    const pending = [bindings];
+    while (pending.length) {
+      const object = pending.pop();
+      Object.freeze(object);
+      for (const child of Object.values(object)) {
+        if (child !== null &amp;&amp; typeof child === &quot;object&quot;) pending.push(child);
+      }
+    }
+    const updates = [];
+    if (mockElement != null) {
+      const mocks = Object.entries(parse(mockElement.textContent));
+      mockElement.remove();
+      for (const [name, value] of mocks) {
+        values.set(name, value);
+        updates.push({ name, revision: 1, state: &quot;ready&quot;, value: { type: &quot;json&quot;, value } });
+      }
+    }
+    if (fileElement != null) {
+      const files = parse(fileElement.textContent);
+      fileElement.remove();
+      const blobs = new Map();
+      const urls = [];
+      for (const [name, binding] of Object.entries(bindings)) {
+        if (binding.type !== &quot;file&quot; || !hasOwn(files, binding.path)) continue;
+        const file = files[binding.path];
+        let blob = blobs.get(binding.path);
+        if (blob == null) {
+          const bytes = Uint8Array.fromBase64?.(file.base64) ??
+            Uint8Array.from(atob(file.base64), (char) =&gt; char.charCodeAt(0));
+          blob = new Blob([bytes], { type: file.mimeType });
+          blobs.set(binding.path, blob);
+        }
+        const url = URL.createObjectURL(blob);
+        urls.push(url);
+        values.set(name, { name: file.name, blob, url });
+        updates.push({ name, revision: 1, state: &quot;ready&quot;, value: { type: &quot;file&quot;, ...file } });
+      }
+      globalThis.addEventListener(&quot;pagehide&quot;, (event) =&gt; {
+        // A persisted pagehide can restore this same document and its subscriptions.
+        if (event.persisted) return;
+        for (const url of urls) URL.revokeObjectURL(url);
+        urls.length = 0;
+      });
+    }
+    if (mockElement != null || fileElement != null) connectorGlobals.visualizationData = { updates };
+    connectorGlobals.visualization = {
+      get bindings() {
+        return bindings;
+      },
+      /** @param {string} name @param {(value: unknown) =&gt; void} callback */
+      onData(name, callback) {
+        if (typeof callback !== &quot;function&quot;) {
+          throw new TypeError(&quot;onData requires a callback&quot;);
+        }
+        try {
+          callback(values.get(name));
+        } catch (error) {
+          // oxlint-disable-next-line no-console -- Keep authored callback failures local.
+          console.error(&quot;Live visualization data callback failed&quot;, error);
+        }
+        // A static preview delivers the current value once per subscription.
+        return () =&gt; {};
+      },
+    };
+  }
+  const syncTheme = () =&gt; {
+    const theme = mediaQuery.matches ? &quot;dark&quot; : &quot;light&quot;;
+    root.dataset.theme = theme;
+    globalThis.openai = {
+      ...globalThis.openai,
+      ...connectorGlobals,
+      openExternal,
+      sendFollowUpMessage,
+      setWidgetState,
+      theme,
+      visualizationStyleVariables: {},
+      visualizationTheme: theme,
+      widgetState: state,
+      statePersistence,
+      stateModelContext: &quot;none&quot;,
+    };
+    globalThis.dispatchEvent(
+      new CustomEvent(&quot;openai:set_globals&quot;, {
+        detail: { globals: globalThis.openai },
+      }),
+    );
+  };
+  const sendHeight = () =&gt; {
+    postToHost(&quot;height&quot;, {
+      height: Math.ceil(
+        Math.max(
+          document.body.scrollHeight,
+          document.body.getBoundingClientRect().height,
+        ),
+      ),
+    });
+  };
+
+  globalThis.addEventListener(
+    &quot;message&quot;,
+    (event) =&gt; {
+      const data = apply(getMessageData, event, []);
+      const ports = apply(getMessagePorts, event, []);
+      const source = apply(getMessageSource, event, []);
+      if (
+        hostPort != null ||
+        source !== parentWindow ||
+        typeof data !== &quot;object&quot; ||
+        data?.type !== &quot;codex-visualization-initialize&quot; ||
+        !isArray(ports) ||
+        ports.length !== 1
+      ) {
+        return;
+      }
+      apply(stopMessagePropagation, event, []);
+      const nextHostPort = ports[0];
+      try {
+        apply(addHostMessageListener, nextHostPort, [
+          &quot;message&quot;,
+          (event) =&gt; {
+            const data = apply(getMessageData, event, []);
+            if (typeof data === &quot;object&quot; &amp;&amp; data?.type === &quot;measure&quot;) {
+              sendHeight();
+            } else if (
+              typeof data === &quot;object&quot; &amp;&amp;
+              data?.type === &quot;widget-state-result&quot;
+            ) {
+              /** @type {unknown} */
+              const id = data.id;
+              if (typeof id !== &quot;number&quot;) {
+                return;
+              }
+              const pending = pendingStateWrites.get(id);
+              if (pending != null) {
+                pendingStateWrites.delete(id);
+                globalThis.clearTimeout(pending.timeout);
+                if (data.ok === true) {
+                  pending.resolve();
+                } else {
+                  pending.reject(persistenceError());
+                }
+              }
+            }
+          },
+        ]);
+        apply(startHostPort, nextHostPort, []);
+      } catch {
+        return;
+      }
+      hostPort = nextHostPort;
+      for (const [id, { serializedState }] of pendingStateWrites) {
+        postToHost(&quot;widget-state-write&quot;, { id, state: serializedState });
+      }
+      sendHeight();
+    },
+    { capture: true },
+  );
+  document.currentScript?.remove();
+  mediaQuery.addEventListener(&quot;change&quot;, syncTheme);
+  globalThis.addEventListener(&quot;click&quot;, (event) =&gt; {
+    if (event.defaultPrevented) {
+      return;
+    }
+    let element = null;
+    if (event.target instanceof globalThis.Element) {
+      element = event.target;
+    } else if (event.target instanceof globalThis.Node) {
+      element = event.target.parentElement;
+    }
+    const link = element?.closest(&quot;a[href]&quot;);
+    const href = link?.getAttribute(&quot;href&quot;);
+    if (href == null) {
+      return;
+    }
+    if (href.startsWith(&quot;#&quot;)) {
+      let id;
+      try {
+        id = decodeURIComponent(href.slice(1));
+      } catch {
+        return;
+      }
+      const target = id.length === 0 ? root : document.getElementById(id);
+      if (
+        target == null ||
+        globalThis.navigator.userActivation?.isActive !== true
+      ) {
+        return;
+      }
+      event.preventDefault();
+      postToHost(&quot;scroll-to&quot;, {
+        top: target.getBoundingClientRect().top + globalThis.scrollY,
+      });
+      return;
+    }
+    event.preventDefault();
+    openExternal({ href });
+  });
+  new ResizeObserver(sendHeight).observe(document.body);
+  syncTheme();
+})();
+&lt;/script&gt;
+&lt;div id=&quot;receipts-explorer&quot; lang=&quot;ru&quot;&gt;
+  &lt;style&gt;
+    #receipts-explorer { display:grid; grid-template-columns:minmax(0,1fr); min-width:0; gap:calc(var(--font-size-base)*1.1); color:var(--foreground); }
+    #receipts-explorer [hidden] { display:none; }
+    #receipts-explorer .rx-heading { display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:var(--font-size-base); padding-right:90px; }
+    #receipts-explorer .rx-stack { display:grid; gap:calc(var(--font-size-base)*.6); min-width:0; }
+    #receipts-explorer .rx-fields { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:var(--font-size-base); }
+    #receipts-explorer .rx-chart-grid { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1.2fr); gap:calc(var(--font-size-base)*2); align-items:start; }
+    #receipts-explorer .rx-bars { display:grid; gap:calc(var(--font-size-base)*.65); }
+    #receipts-explorer .rx-bar-row { display:grid; gap:calc(var(--font-size-base)*.25); min-width:0; }
+    #receipts-explorer .rx-caption { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:center; gap:calc(var(--font-size-base)*.35); }
+    #receipts-explorer .rx-bar-track { display:block; width:100%; height:12px; overflow:visible; }
+    #receipts-explorer .rx-bar-mark { fill:var(--viz-series-1,var(--blue)); transition:width .24s ease; }
+    #receipts-explorer .rx-before-mark { fill:var(--viz-series-2,var(--orange)); }
+    #receipts-explorer .rx-axis { display:flex; justify-content:space-between; color:var(--muted-foreground); }
+    #receipts-explorer .rx-columns { display:grid; grid-template-columns:44px minmax(0,1fr); gap:calc(var(--font-size-base)*.5); }
+    #receipts-explorer .rx-y-axis { display:flex; flex-direction:column; justify-content:space-between; height:216px; margin-top:24px; color:var(--muted-foreground); }
+    #receipts-explorer .rx-column-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:calc(var(--font-size-base)*.5); }
+    #receipts-explorer .rx-column { display:grid; grid-template-rows:240px auto; gap:calc(var(--font-size-base)*.5); min-width:0; }
+    #receipts-explorer .rx-column-shaft { display:flex; flex-direction:column; justify-content:flex-end; align-items:center; gap:calc(var(--font-size-base)*.25); border-bottom:1px solid var(--border); }
+    #receipts-explorer .rx-column-mark { display:block; width:65%; background:var(--viz-series-1,var(--blue)); transition:height .24s ease; }
+    #receipts-explorer .rx-column-label { text-align:center; overflow-wrap:anywhere; }
+    #receipts-explorer .rx-receipt-bars { display:none; }
+    #receipts-explorer .rx-table-area { min-width:0; }
+    #receipts-explorer .rx-product-cell { min-width:180px; max-width:330px; }
+    #receipts-explorer .rx-note { overflow-wrap:anywhere; }
+    #receipts-explorer .rx-discount-rows { display:grid; gap:calc(var(--font-size-base)*1.4); }
+    #receipts-explorer .rx-detail-grid { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:var(--font-size-base); }
+    #receipts-explorer .rx-panel { display:grid; gap:var(--font-size-base); min-width:0; }
+    #receipts-explorer .rx-value { white-space:nowrap; font-variant-numeric:tabular-nums; }
+    #receipts-explorer .rx-scale-label { color:var(--muted-foreground); }
+    @media(max-width:850px) { #receipts-explorer .rx-chart-grid { grid-template-columns:minmax(0,1fr); } }
+    @media(max-width:600px) { #receipts-explorer .rx-fields,#receipts-explorer .rx-detail-grid { grid-template-columns:minmax(0,1fr); } }
+    @media(max-width:400px) { #receipts-explorer .rx-columns { display:none; } #receipts-explorer .rx-receipt-bars { display:grid; gap:var(--font-size-base); } }
+    @media(prefers-reduced-motion:reduce) { #receipts-explorer .rx-bar-mark,#receipts-explorer .rx-column-mark { transition:none; } }
+    #receipts-explorer [hidden] { display:none !important; }
+  &lt;/style&gt;
+  &lt;header class=&quot;rx-heading&quot;&gt;
+    &lt;div class=&quot;rx-stack&quot;&gt;&lt;h2&gt;Покупки под контролем&lt;/h2&gt;&lt;div class=&quot;text-small text-muted&quot;&gt;3 чека · 15 августа — 17 сентября 2025 · работает без интернета&lt;/div&gt;&lt;/div&gt;
+    &lt;button id=&quot;rx-reset&quot; type=&quot;button&quot; class=&quot;btn&quot;&gt;Сбросить фильтры&lt;/button&gt;
+  &lt;/header&gt;
+  &lt;div class=&quot;rx-fields&quot; aria-label=&quot;Основные фильтры&quot;&gt;
+    &lt;label class=&quot;form-label&quot; for=&quot;rx-q&quot;&gt;Поиск товара&lt;input id=&quot;rx-q&quot; class=&quot;form-control&quot; type=&quot;search&quot; placeholder=&quot;Название, оригинал или бренд&quot;&gt;&lt;/label&gt;
+    &lt;label class=&quot;form-label&quot; for=&quot;rx-receipt&quot;&gt;Чек&lt;select id=&quot;rx-receipt&quot; class=&quot;form-select&quot;&gt;&lt;option value=&quot;all&quot;&gt;Все чеки&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+    &lt;label class=&quot;form-label&quot; for=&quot;rx-category&quot;&gt;Категория&lt;select id=&quot;rx-category&quot; class=&quot;form-select&quot;&gt;&lt;option value=&quot;all&quot;&gt;Все категории&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;details id=&quot;rx-more-filters&quot;&gt;&lt;summary&gt;Дополнительные фильтры&lt;/summary&gt;&lt;div class=&quot;rx-fields&quot;&gt;
+    &lt;label class=&quot;form-label&quot; for=&quot;rx-product&quot;&gt;Базовый продукт&lt;select id=&quot;rx-product&quot; class=&quot;form-select&quot;&gt;&lt;option value=&quot;all&quot;&gt;Все продукты&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+    &lt;label class=&quot;form-label&quot; for=&quot;rx-discount&quot;&gt;Скидка&lt;select id=&quot;rx-discount&quot; class=&quot;form-select&quot;&gt;&lt;option value=&quot;all&quot;&gt;Все позиции&lt;/option&gt;&lt;option value=&quot;yes&quot;&gt;С отдельной скидкой&lt;/option&gt;&lt;option value=&quot;no&quot;&gt;Без отдельной скидки&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+    &lt;label class=&quot;form-label&quot; for=&quot;rx-unit&quot;&gt;Единицы на чеке&lt;select id=&quot;rx-unit&quot; class=&quot;form-select&quot;&gt;&lt;option value=&quot;all&quot;&gt;Все единицы&lt;/option&gt;&lt;option value=&quot;kg&quot;&gt;Весовые позиции, кг&lt;/option&gt;&lt;option value=&quot;piece&quot;&gt;Штуки / упаковки&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+  &lt;/div&gt;&lt;/details&gt;
+  &lt;div class=&quot;viz-row&quot; role=&quot;group&quot; aria-label=&quot;Основа сумм&quot;&gt;&lt;span&gt;Расходы:&lt;/span&gt;&lt;button class=&quot;btn&quot; type=&quot;button&quot; data-rx-basis=&quot;net&quot; aria-pressed=&quot;true&quot;&gt;После скидок&lt;/button&gt;&lt;button class=&quot;btn&quot; type=&quot;button&quot; data-rx-basis=&quot;gross&quot; aria-pressed=&quot;false&quot;&gt;До скидок&lt;/button&gt;&lt;/div&gt;
+  &lt;div id=&quot;rx-active&quot; class=&quot;viz-row&quot; aria-label=&quot;Активные фильтры&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;viz-grid&quot; aria-live=&quot;polite&quot;&gt;
+    &lt;div class=&quot;card viz-stat&quot;&gt;&lt;div id=&quot;rx-total-label&quot;&gt;Расходы после скидок&lt;/div&gt;&lt;div id=&quot;rx-total&quot; class=&quot;viz-stat-value tabular-nums&quot;&gt;541,05 PLN&lt;/div&gt;&lt;div id=&quot;rx-receipt-count&quot; class=&quot;text-small&quot;&gt;3 чека в выборке&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;card viz-stat&quot;&gt;&lt;div&gt;Экономия по выборке&lt;/div&gt;&lt;div id=&quot;rx-saving&quot; class=&quot;viz-stat-value tabular-nums&quot;&gt;6,08 PLN&lt;/div&gt;&lt;div id=&quot;rx-saving-rate&quot; class=&quot;text-small&quot;&gt;1,11% от суммы до скидок&lt;/div&gt;&lt;/div&gt;
+    &lt;div class=&quot;card viz-stat&quot;&gt;&lt;div&gt;Товарные строки&lt;/div&gt;&lt;div id=&quot;rx-count&quot; class=&quot;viz-stat-value tabular-nums&quot;&gt;62&lt;/div&gt;&lt;div id=&quot;rx-unit-count&quot; class=&quot;text-small&quot;&gt;50 шт./уп. · 8,864 кг&lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class=&quot;viz-row&quot; role=&quot;group&quot; aria-label=&quot;Раздел&quot;&gt;
+    &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-rx-tab=&quot;overview&quot; aria-pressed=&quot;true&quot;&gt;Обзор&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-rx-tab=&quot;ranking&quot; aria-pressed=&quot;false&quot;&gt;Рейтинг&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-rx-tab=&quot;discounts&quot; aria-pressed=&quot;false&quot;&gt;Скидки&lt;/button&gt;
+    &lt;button class=&quot;btn&quot; type=&quot;button&quot; data-rx-tab=&quot;table&quot; aria-pressed=&quot;false&quot;&gt;Таблица&lt;/button&gt;
+  &lt;/div&gt;
+  &lt;div id=&quot;rx-status&quot; class=&quot;text-small text-muted&quot; aria-live=&quot;polite&quot;&gt;&lt;/div&gt;
+  &lt;section id=&quot;rx-empty&quot; class=&quot;card rx-stack&quot; hidden&gt;&lt;div&gt;Покупок по этим условиям нет.&lt;/div&gt;&lt;div&gt;&lt;button type=&quot;button&quot; class=&quot;btn&quot; data-rx-reset&gt;Сбросить фильтры&lt;/button&gt;&lt;/div&gt;&lt;/section&gt;
+  &lt;section class=&quot;rx-panel&quot; data-rx-panel=&quot;overview&quot;&gt;
+    &lt;div class=&quot;rx-chart-grid&quot;&gt;
+      &lt;div class=&quot;rx-stack&quot;&gt;&lt;h3 id=&quot;rx-receipt-title&quot;&gt;Суммы чеков&lt;/h3&gt;&lt;div class=&quot;text-small text-muted&quot;&gt;PLN · единый масштаб · нажмите на чек&lt;/div&gt;&lt;div id=&quot;rx-receipt-chart&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;div class=&quot;rx-stack&quot;&gt;&lt;h3&gt;Расходы по категориям&lt;/h3&gt;&lt;div class=&quot;text-small text-muted&quot;&gt;PLN и доля выбранных расходов · нажмите на категорию&lt;/div&gt;&lt;div id=&quot;rx-category-chart&quot;&gt;&lt;/div&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;rx-panel&quot; data-rx-panel=&quot;ranking&quot; hidden&gt;
+    &lt;div class=&quot;rx-fields&quot;&gt;
+      &lt;label class=&quot;form-label&quot; for=&quot;rx-metric&quot;&gt;Ранжировать по&lt;select id=&quot;rx-metric&quot; class=&quot;form-select&quot;&gt;&lt;option value=&quot;spend&quot;&gt;Сумме покупок, PLN&lt;/option&gt;&lt;option value=&quot;saving&quot;&gt;Скидке, PLN&lt;/option&gt;&lt;option value=&quot;saving-pct&quot;&gt;Скидке, %&lt;/option&gt;&lt;option value=&quot;price-kg&quot;&gt;Цене за кг — весовые позиции&lt;/option&gt;&lt;option value=&quot;price-piece&quot;&gt;Цене за штуку / упаковку&lt;/option&gt;&lt;option value=&quot;price-normalized&quot;&gt;Цене за кг — включая фасовки с известной массой&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+      &lt;label class=&quot;form-label&quot; for=&quot;rx-group&quot;&gt;Группировать по&lt;select id=&quot;rx-group&quot; class=&quot;form-select&quot;&gt;&lt;option value=&quot;line&quot;&gt;Отдельной товарной строке&lt;/option&gt;&lt;option value=&quot;product&quot;&gt;Базовому продукту&lt;/option&gt;&lt;option value=&quot;category&quot;&gt;Категории&lt;/option&gt;&lt;option value=&quot;store&quot;&gt;Магазину&lt;/option&gt;&lt;option value=&quot;receipt&quot;&gt;Чеку&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+      &lt;label class=&quot;form-label&quot; for=&quot;rx-sort&quot;&gt;Порядок&lt;select id=&quot;rx-sort&quot; class=&quot;form-select&quot;&gt;&lt;option value=&quot;descending&quot;&gt;От большего к меньшему&lt;/option&gt;&lt;option value=&quot;ascending&quot;&gt;От меньшего к большему&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;viz-row&quot;&gt;&lt;label class=&quot;form-label&quot; for=&quot;rx-limit&quot;&gt;Показать&lt;select id=&quot;rx-limit&quot; class=&quot;form-select&quot;&gt;&lt;option value=&quot;5&quot;&gt;Топ-5&lt;/option&gt;&lt;option value=&quot;10&quot;&gt;Топ-10&lt;/option&gt;&lt;option value=&quot;20&quot;&gt;Топ-20&lt;/option&gt;&lt;option value=&quot;all&quot;&gt;Все&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;span id=&quot;rx-rank-context&quot; class=&quot;text-small text-muted&quot;&gt;&lt;/span&gt;&lt;/div&gt;
+    &lt;div id=&quot;rx-price-note&quot; class=&quot;text-small text-muted&quot; hidden&gt;Цены сравниваются по отдельным строкам. Сравнивайте один базовый продукт: бренды, состав и качество могут различаться.&lt;/div&gt;
+    &lt;div id=&quot;rx-rank-chart&quot; class=&quot;rx-bars&quot;&gt;&lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;rx-panel&quot; data-rx-panel=&quot;discounts&quot; hidden&gt;
+    &lt;h3&gt;Экономия на товарах&lt;/h3&gt;&lt;div class=&quot;text-small text-muted&quot;&gt;Только позиции с отдельной скидкой · карточки относятся к этой же выборке&lt;/div&gt;
+    &lt;div id=&quot;rx-discount-chart&quot; class=&quot;rx-discount-rows&quot;&gt;&lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section class=&quot;rx-panel rx-table-area&quot; data-rx-panel=&quot;table&quot; hidden&gt;
+    &lt;div class=&quot;rx-caption&quot;&gt;&lt;h3&gt;Покупки&lt;/h3&gt;&lt;label class=&quot;form-label&quot; for=&quot;rx-per-page&quot;&gt;Строк на странице&lt;select id=&quot;rx-per-page&quot; class=&quot;form-select&quot;&gt;&lt;option value=&quot;10&quot;&gt;10&lt;/option&gt;&lt;option value=&quot;25&quot;&gt;25&lt;/option&gt;&lt;option value=&quot;all&quot;&gt;Все&lt;/option&gt;&lt;/select&gt;&lt;/label&gt;&lt;/div&gt;
+    &lt;div class=&quot;table-responsive&quot;&gt;&lt;table class=&quot;table table-sm&quot;&gt;&lt;caption class=&quot;sr-only&quot;&gt;Покупки по текущим фильтрам. Заголовки сортируют таблицу; название товара открывает детали.&lt;/caption&gt;&lt;thead&gt;&lt;tr id=&quot;rx-table-head&quot;&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody id=&quot;rx-table-body&quot;&gt;&lt;/tbody&gt;&lt;tfoot id=&quot;rx-table-foot&quot;&gt;&lt;/tfoot&gt;&lt;/table&gt;&lt;/div&gt;
+    &lt;div class=&quot;rx-caption&quot;&gt;&lt;span id=&quot;rx-page-info&quot; class=&quot;text-small text-muted&quot;&gt;&lt;/span&gt;&lt;div class=&quot;viz-row&quot;&gt;&lt;button class=&quot;btn&quot; type=&quot;button&quot; id=&quot;rx-prev&quot;&gt;Назад&lt;/button&gt;&lt;button class=&quot;btn&quot; type=&quot;button&quot; id=&quot;rx-next&quot;&gt;Вперёд&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+  &lt;/section&gt;
+  &lt;section id=&quot;rx-detail&quot; class=&quot;card rx-stack&quot; hidden aria-label=&quot;Детали выбранной покупки&quot;&gt;&lt;div class=&quot;rx-caption&quot;&gt;&lt;h3 id=&quot;rx-detail-title&quot;&gt;&lt;/h3&gt;&lt;button class=&quot;btn&quot; type=&quot;button&quot; id=&quot;rx-close-detail&quot;&gt;Закрыть детали&lt;/button&gt;&lt;/div&gt;&lt;div id=&quot;rx-detail-content&quot; class=&quot;rx-stack&quot;&gt;&lt;/div&gt;&lt;/section&gt;
+  &lt;hr&gt;
+  &lt;details&gt;&lt;summary&gt;Источники и правила расчёта&lt;/summary&gt;&lt;div class=&quot;rx-stack text-small&quot;&gt;
+    &lt;div&gt;Żabka: 118,08 PLN · Kaufland: 148,09 PLN · Carrefour: 274,88 PLN. Суммы, количества и скидки перенесены с трёх JPG-чеков.&lt;/div&gt;
+    &lt;div&gt;Скидки: 5,08 PLN на Szamamm apple pancakes и 1,00 PLN на Tuna chunks in oil. Общие 6,08 PLN повторно не вычитаются. Скидка в процентах = экономия / сумма до скидки; для групп используется взвешенный процент.&lt;/div&gt;
+    &lt;div&gt;Базовый продукт объединяет похожие покупки для анализа расходов. Сорта, бренды, состав и фасовки сохранены в отдельных строках: это не доказательство идентичности товаров.&lt;/div&gt;
+    &lt;div&gt;Цена за кг для весовых позиций берётся из расчётной строки. Для упакованных товаров пересчёт доступен только при явно указанной массе; неопределённые коды 15, 50 и PZ400 не считаются массой. Для Euroser используется фактически оплаченный вес 0,117 кг, а не 0,13 кг из названия.&lt;/div&gt;
+    &lt;div&gt;Вероятные соответствия двух сокращённых названий помечены рядом с товарами. Оригинал и ссылка на каталог доступны в деталях. Бонусные баллы не считаются денежной скидкой.&lt;/div&gt;
+    &lt;div&gt;Все данные и диаграммы находятся внутри этого файла. Обновления Excel автоматически не импортируются. Ссылки производителей требуют интернета только при открытии.&lt;/div&gt;
+  &lt;/div&gt;&lt;/details&gt;
+  &lt;script type=&quot;application/json&quot; id=&quot;rx-data&quot;&gt;{&quot;receipts&quot;:[{&quot;id&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;label&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;totalCents&quot;:11808},{&quot;id&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;label&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;totalCents&quot;:14809},{&quot;id&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;label&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;totalCents&quot;:27488}],&quot;items&quot;:[{&quot;id&quot;:&quot;1-1&quot;,&quot;receipt&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;receiptLabel&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;excelRow&quot;:2,&quot;name&quot;:&quot;Chocolate croissant&quot;,&quot;category&quot;:&quot;Bakery &amp; sweets&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:3.99,&quot;grossCents&quot;:399,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;CROISSANT CZEKOLAD-C&quot;,&quot;originalCategory&quot;:&quot;Выпечка и сладости&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Croissants&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;1-2&quot;,&quot;receipt&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;receiptLabel&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;excelRow&quot;:3,&quot;name&quot;:&quot;Raspberry croissant&quot;,&quot;category&quot;:&quot;Bakery &amp; sweets&quot;,&quot;qty&quot;:2,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:3.99,&quot;grossCents&quot;:798,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;CROISSANT MALINA-C&quot;,&quot;originalCategory&quot;:&quot;Выпечка и сладости&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Croissants&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;1-3&quot;,&quot;receipt&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;receiptLabel&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;excelRow&quot;:4,&quot;name&quot;:&quot;Tomatoes, 250 g&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:6.99,&quot;grossCents&quot;:699,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;POMIDOR 250g-C&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Tomatoes&quot;,&quot;packKg&quot;:0.25,&quot;probable&quot;:false},{&quot;id&quot;:&quot;1-4&quot;,&quot;receipt&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;receiptLabel&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;excelRow&quot;:5,&quot;name&quot;:&quot;Szamamm apple pancakes&quot;,&quot;category&quot;:&quot;Bakery &amp; sweets&quot;,&quot;qty&quot;:2,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:9.99,&quot;grossCents&quot;:1998,&quot;discountCents&quot;:508,&quot;originalName&quot;:&quot;SZAMAMM RACUCH JAB-C&quot;,&quot;originalCategory&quot;:&quot;Выпечка и сладости&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Apple pancakes&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;1-5&quot;,&quot;receipt&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;receiptLabel&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;excelRow&quot;:6,&quot;name&quot;:&quot;Blackcurrant jam, 280 g (LOWIC)&quot;,&quot;category&quot;:&quot;Groceries &amp; spices&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:6.99,&quot;grossCents&quot;:699,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;DZEM CZAR PORZECZKA 280g LOWIC-C&quot;,&quot;originalCategory&quot;:&quot;Бакалея и специи&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Jam&quot;,&quot;packKg&quot;:0.28,&quot;probable&quot;:false},{&quot;id&quot;:&quot;1-6&quot;,&quot;receipt&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;receiptLabel&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;excelRow&quot;:7,&quot;name&quot;:&quot;Carrots, tray, 500 g&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:4.5,&quot;grossCents&quot;:450,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;MARCHEW TACKA 500g-C&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Carrots&quot;,&quot;packKg&quot;:0.5,&quot;probable&quot;:false},{&quot;id&quot;:&quot;1-7&quot;,&quot;receipt&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;receiptLabel&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;excelRow&quot;:8,&quot;name&quot;:&quot;Potatoes, 1.5 kg&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:6.5,&quot;grossCents&quot;:650,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;ZIEMNIAKI 1.5kg-C&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Potatoes&quot;,&quot;packKg&quot;:1.5,&quot;probable&quot;:false},{&quot;id&quot;:&quot;1-8&quot;,&quot;receipt&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;receiptLabel&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;excelRow&quot;:9,&quot;name&quot;:&quot;Tuna chunks in oil, 170 g (FO G)&quot;,&quot;category&quot;:&quot;Fish&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:8.99,&quot;grossCents&quot;:899,&quot;discountCents&quot;:100,&quot;originalName&quot;:&quot;TUNCZYK KAWALKI OLEJ 170g FO G-C&quot;,&quot;originalCategory&quot;:&quot;Рыба&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Tuna&quot;,&quot;packKg&quot;:0.17,&quot;probable&quot;:false},{&quot;id&quot;:&quot;1-9&quot;,&quot;receipt&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;receiptLabel&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;excelRow&quot;:10,&quot;name&quot;:&quot;Polish extra butter, 200 g&quot;,&quot;category&quot;:&quot;Dairy products&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:9.99,&quot;grossCents&quot;:999,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;MASLO EKSTRA POLSKIE 200g-C&quot;,&quot;originalCategory&quot;:&quot;Молочные продукты&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Butter&quot;,&quot;packKg&quot;:0.2,&quot;probable&quot;:false},{&quot;id&quot;:&quot;1-10&quot;,&quot;receipt&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;receiptLabel&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;excelRow&quot;:11,&quot;name&quot;:&quot;Barn eggs, size M, 10-pack&quot;,&quot;category&quot;:&quot;Eggs&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:11.99,&quot;grossCents&quot;:1199,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;JAJA SCIOL 10 SZ M-C&quot;,&quot;originalCategory&quot;:&quot;Яйца&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Eggs&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;1-11&quot;,&quot;receipt&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;receiptLabel&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;excelRow&quot;:12,&quot;name&quot;:&quot;Mola toilet paper (300LI)&quot;,&quot;category&quot;:&quot;Household products&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:11.99,&quot;grossCents&quot;:1199,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;PAP TOA MOLA 300LI-A&quot;,&quot;originalCategory&quot;:&quot;Бытовые товары&quot;,&quot;translationNote&quot;:&quot;The receipt code 300LI is retained without inferring the pack configuration.&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Toilet paper&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;1-12&quot;,&quot;receipt&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;receiptLabel&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;excelRow&quot;:13,&quot;name&quot;:&quot;Sliced cheese, 150 g&quot;,&quot;category&quot;:&quot;Cheese &amp; curd cheese&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:6.99,&quot;grossCents&quot;:699,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;SER PLASTRY 150g-C&quot;,&quot;originalCategory&quot;:&quot;Сыры и творог&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Sliced cheese&quot;,&quot;packKg&quot;:0.15,&quot;probable&quot;:false},{&quot;id&quot;:&quot;1-13&quot;,&quot;receipt&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;receiptLabel&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;excelRow&quot;:14,&quot;name&quot;:&quot;Processed cheese, 180 g&quot;,&quot;category&quot;:&quot;Cheese &amp; curd cheese&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:7.99,&quot;grossCents&quot;:799,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;SER TOPIONY 180g-C&quot;,&quot;originalCategory&quot;:&quot;Сыры и творог&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Processed cheese&quot;,&quot;packKg&quot;:0.18,&quot;probable&quot;:false},{&quot;id&quot;:&quot;1-14&quot;,&quot;receipt&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;receiptLabel&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;excelRow&quot;:15,&quot;name&quot;:&quot;Full-fat farmhouse curd cheese, 250 g (PIA)&quot;,&quot;category&quot;:&quot;Cheese &amp; curd cheese&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:5.99,&quot;grossCents&quot;:599,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;TWAROG WIEJSKI TLUSTY 250g PIA-C&quot;,&quot;originalCategory&quot;:&quot;Сыры и творог&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Curd cheese&quot;,&quot;packKg&quot;:0.25,&quot;probable&quot;:false},{&quot;id&quot;:&quot;1-15&quot;,&quot;receipt&quot;:&quot;1&quot;,&quot;date&quot;:&quot;2025-08-15&quot;,&quot;store&quot;:&quot;Żabka&quot;,&quot;receiptLabel&quot;:&quot;15.08 · Żabka&quot;,&quot;file&quot;:&quot;Receipt_2025-08-15_114426.jpg&quot;,&quot;excelRow&quot;:16,&quot;name&quot;:&quot;Kefir, 420 g&quot;,&quot;category&quot;:&quot;Dairy products&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:3.3,&quot;grossCents&quot;:330,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;KEFIR 420g-C&quot;,&quot;originalCategory&quot;:&quot;Молочные продукты&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Kefir&quot;,&quot;packKg&quot;:0.42,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-1&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:17,&quot;name&quot;:&quot;Apple pancakes&quot;,&quot;category&quot;:&quot;Bakery &amp; sweets&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:7.49,&quot;grossCents&quot;:749,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;Racuchy Jabłko&quot;,&quot;originalCategory&quot;:&quot;Выпечка и сладости&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Apple pancakes&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-2&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:18,&quot;name&quot;:&quot;General Fresh Flower toilet rim block, 45 g&quot;,&quot;category&quot;:&quot;Household products&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:3.99,&quot;grossCents&quot;:399,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;GFZawWCFlower45g&quot;,&quot;originalCategory&quot;:&quot;Выпечка и сладости&quot;,&quot;translationNote&quot;:&quot;Likely identification: GF = General Fresh; ZawWC = toilet rim block; Flower and 45 g match the manufacturer&#x27;s product range. The exact fragrance is not specified on the receipt. Previously misclassified as bakery/sweets; corrected to household products.&quot;,&quot;translationSource&quot;:&quot;https://generalfresh.pl/product/general-fresh-tri-force-flower-toilet-rim-block-force/&quot;,&quot;product&quot;:&quot;Toilet rim blocks&quot;,&quot;packKg&quot;:0.045,&quot;probable&quot;:true},{&quot;id&quot;:&quot;2-3&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:19,&quot;name&quot;:&quot;Euroser goat cheese, 0.13 kg&quot;,&quot;category&quot;:&quot;Cheese &amp; curd cheese&quot;,&quot;qty&quot;:0.117,&quot;unit&quot;:&quot;kg&quot;,&quot;unitPrice&quot;:99.9,&quot;grossCents&quot;:1169,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;Euroser Ser Kozi 0,13kg&quot;,&quot;originalCategory&quot;:&quot;Сыры и творог&quot;,&quot;translationNote&quot;:&quot;0.13 kg is part of the printed product name. The charged weight remains 0.117 kg.&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Goat cheese&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-4&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:20,&quot;name&quot;:&quot;K-SM whole rabbit&quot;,&quot;category&quot;:&quot;Meat &amp; poultry&quot;,&quot;qty&quot;:1.476,&quot;unit&quot;:&quot;kg&quot;,&quot;unitPrice&quot;:30.99,&quot;grossCents&quot;:4574,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;K-SMKrólik tuszka&quot;,&quot;originalCategory&quot;:&quot;Мясо и птица&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Rabbit&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-5&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:21,&quot;name&quot;:&quot;KLC curd cheese roll with chives&quot;,&quot;category&quot;:&quot;Cheese &amp; curd cheese&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:6.49,&quot;grossCents&quot;:649,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;KLC.RolaTwarSzczyp&quot;,&quot;originalCategory&quot;:&quot;Сыры и творог&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Curd cheese&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-6&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:22,&quot;name&quot;:&quot;Full-fat farmhouse curd cheese&quot;,&quot;category&quot;:&quot;Cheese &amp; curd cheese&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:5.79,&quot;grossCents&quot;:579,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;TwarógWiejskiTłusty&quot;,&quot;originalCategory&quot;:&quot;Сыры и творог&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Curd cheese&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-7&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:23,&quot;name&quot;:&quot;Radishes, bunch&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:2.99,&quot;grossCents&quot;:299,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;Rzodkiewka pęczek szt&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Radishes&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-8&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:24,&quot;name&quot;:&quot;Polish summer apples&quot;,&quot;category&quot;:&quot;Fruit&quot;,&quot;qty&quot;:0.63,&quot;unit&quot;:&quot;kg&quot;,&quot;unitPrice&quot;:6.99,&quot;grossCents&quot;:440,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;Jabłka Polskie letni&quot;,&quot;originalCategory&quot;:&quot;Фрукты&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Apples&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-9&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:25,&quot;name&quot;:&quot;Dill, bunch&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:2.49,&quot;grossCents&quot;:249,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;Koperek pęczek&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Dill&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-10&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:26,&quot;name&quot;:&quot;Field cucumbers&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:0.764,&quot;unit&quot;:&quot;kg&quot;,&quot;unitPrice&quot;:10.99,&quot;grossCents&quot;:840,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;Ogórek gruntowy kg&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Field cucumbers&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-11&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:27,&quot;name&quot;:&quot;Shallots, 250 g&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:4.99,&quot;grossCents&quot;:499,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;Cebula szalotka 250g&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Shallots&quot;,&quot;packKg&quot;:0.25,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-12&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:28,&quot;name&quot;:&quot;Chives, bunch, 30 g&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:2.99,&quot;grossCents&quot;:299,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;Szczypiorek pęczek 30g&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Chives&quot;,&quot;packKg&quot;:0.03,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-13&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:29,&quot;name&quot;:&quot;Vine tomatoes&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:1.13,&quot;unit&quot;:&quot;kg&quot;,&quot;unitPrice&quot;:7.99,&quot;grossCents&quot;:903,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;Pomidor gałązka kg&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Tomatoes&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-14&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:30,&quot;name&quot;:&quot;Young soup vegetables, 500 g&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:7.99,&quot;grossCents&quot;:799,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;Włoszczyzna mło 500g&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Soup vegetables&quot;,&quot;packKg&quot;:0.5,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-15&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:31,&quot;name&quot;:&quot;Bistro mix, 160 g&quot;,&quot;category&quot;:&quot;Prepared meals &amp; salads&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:4.99,&quot;grossCents&quot;:499,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;Bistro MIX 160g&quot;,&quot;originalCategory&quot;:&quot;Готовые блюда и салаты&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Bistro mix&quot;,&quot;packKg&quot;:0.16,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-16&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:32,&quot;name&quot;:&quot;Prymat black pepper (20)&quot;,&quot;category&quot;:&quot;Groceries &amp; spices&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:1.34,&quot;grossCents&quot;:134,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;PrymatPieprzCzarny20&quot;,&quot;originalCategory&quot;:&quot;Бакалея и специи&quot;,&quot;translationNote&quot;:&quot;The number 20 is printed without a unit; no pack weight is inferred.&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Black pepper&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-17&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:33,&quot;name&quot;:&quot;Garam masala, 20 g&quot;,&quot;category&quot;:&quot;Groceries &amp; spices&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:1.99,&quot;grossCents&quot;:199,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;GaramMasala20g&quot;,&quot;originalCategory&quot;:&quot;Бакалея и специи&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Garam masala&quot;,&quot;packKg&quot;:0.02,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-18&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:34,&quot;name&quot;:&quot;KLC curry powder, 45 g&quot;,&quot;category&quot;:&quot;Groceries &amp; spices&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:2.32,&quot;grossCents&quot;:232,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;KLCCurry45G&quot;,&quot;originalCategory&quot;:&quot;Бакалея и специи&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Curry powder&quot;,&quot;packKg&quot;:0.045,&quot;probable&quot;:false},{&quot;id&quot;:&quot;2-19&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:35,&quot;name&quot;:&quot;Vortumnus mango and passion fruit dessert, 370 g&quot;,&quot;category&quot;:&quot;Fruit&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:9.99,&quot;grossCents&quot;:999,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;VortumnusSLMaMar370g&quot;,&quot;originalCategory&quot;:&quot;Бакалея и специи&quot;,&quot;translationNote&quot;:&quot;Likely identification: SL = Smaki Lata; MaMar = mango and passion fruit. Brand, product line and 370 g pack match the manufacturer&#x27;s catalogue; the receipt does not provide an EAN for exact confirmation.&quot;,&quot;translationSource&quot;:&quot;https://www.vortumnus.pl/produkt/przetwory-owocowe/owoce-deserowe/mango-marakuja-50-owoce-deserowe-370g/&quot;,&quot;product&quot;:&quot;Fruit dessert&quot;,&quot;packKg&quot;:0.37,&quot;probable&quot;:true},{&quot;id&quot;:&quot;2-20&quot;,&quot;receipt&quot;:&quot;2&quot;,&quot;date&quot;:&quot;2025-08-27&quot;,&quot;store&quot;:&quot;Kaufland&quot;,&quot;receiptLabel&quot;:&quot;27.08 · Kaufland&quot;,&quot;file&quot;:&quot;Receipt_2025-08-27_115143.jpg&quot;,&quot;excelRow&quot;:36,&quot;name&quot;:&quot;Melvit barley flakes (PZ400)&quot;,&quot;category&quot;:&quot;Groceries &amp; spices&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:2.99,&quot;grossCents&quot;:299,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;MelvitPłatkJęczPZ400&quot;,&quot;originalCategory&quot;:&quot;Бакалея и специи&quot;,&quot;translationNote&quot;:&quot;The trailing receipt code PZ400 is retained without expanding the pack specification.&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Barley flakes&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-1&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:37,&quot;name&quot;:&quot;Ptasie Mleczko milk souffle sweets, 340 g&quot;,&quot;category&quot;:&quot;Bakery &amp; sweets&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:24.29,&quot;grossCents&quot;:2429,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;A_PTASIE MLECZ 340G&quot;,&quot;originalCategory&quot;:&quot;Выпечка и сладости&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Milk souffle sweets&quot;,&quot;packKg&quot;:0.34,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-2&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:38,&quot;name&quot;:&quot;Goat cheese with coriander&quot;,&quot;category&quot;:&quot;Cheese &amp; curd cheese&quot;,&quot;qty&quot;:0.088,&quot;unit&quot;:&quot;kg&quot;,&quot;unitPrice&quot;:113.9,&quot;grossCents&quot;:1002,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_SER KOZI Z KOLEND&quot;,&quot;originalCategory&quot;:&quot;Сыры и творог&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Goat cheese&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-3&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:39,&quot;name&quot;:&quot;Redcurrants (MC)&quot;,&quot;category&quot;:&quot;Fruit&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:8.99,&quot;grossCents&quot;:899,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_MC PORZECZKI CZER&quot;,&quot;originalCategory&quot;:&quot;Фрукты&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Redcurrants&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-4&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:40,&quot;name&quot;:&quot;Sweet onion (TUB)&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:5.99,&quot;grossCents&quot;:599,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_CEBULA SŁODKA TUB&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;The truncated suffix TUB is retained.&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Onions&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-5&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:41,&quot;name&quot;:&quot;Curd cheese (MAZUR.SMAK)&quot;,&quot;category&quot;:&quot;Cheese &amp; curd cheese&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:6.55,&quot;grossCents&quot;:655,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_TWAROG MAZUR.SMAK&quot;,&quot;originalCategory&quot;:&quot;Сыры и творог&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Curd cheese&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-6&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:42,&quot;name&quot;:&quot;Field cucumbers (MC)&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:0.448,&quot;unit&quot;:&quot;kg&quot;,&quot;unitPrice&quot;:7.99,&quot;grossCents&quot;:358,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_MC OGÓREK GRUNTOW&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Field cucumbers&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-7&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:43,&quot;name&quot;:&quot;Kumato tomatoes (50)&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:7.99,&quot;grossCents&quot;:799,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_POMIDOR KUMATO 50&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;The number 50 is truncated or lacks a unit on the receipt; no pack weight is inferred.&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Tomatoes&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-8&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:44,&quot;name&quot;:&quot;Clapp&#x27;s Favourite pears&quot;,&quot;category&quot;:&quot;Fruit&quot;,&quot;qty&quot;:0.616,&quot;unit&quot;:&quot;kg&quot;,&quot;unitPrice&quot;:7.99,&quot;grossCents&quot;:492,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_GRUSZKI KLAPSA&quot;,&quot;originalCategory&quot;:&quot;Фрукты&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Pears&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-9&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:45,&quot;name&quot;:&quot;Ptasie Mleczko milk souffle sweets (WE)&quot;,&quot;category&quot;:&quot;Bakery &amp; sweets&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:22.19,&quot;grossCents&quot;:2219,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;A_PTASIE MLECZKO WE&quot;,&quot;originalCategory&quot;:&quot;Выпечка и сладости&quot;,&quot;translationNote&quot;:&quot;The truncated suffix WE is retained; the brand variant is not expanded.&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Milk souffle sweets&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-10&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:46,&quot;name&quot;:&quot;Goat milk yogurt&quot;,&quot;category&quot;:&quot;Dairy products&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:3.59,&quot;grossCents&quot;:359,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_JOG.Z ML.KOZIEGO&quot;,&quot;originalCategory&quot;:&quot;Молочные продукты&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Goat milk yogurt&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-11&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:47,&quot;name&quot;:&quot;Turkey cutlets (MC)&quot;,&quot;category&quot;:&quot;Meat &amp; poultry&quot;,&quot;qty&quot;:0.438,&quot;unit&quot;:&quot;kg&quot;,&quot;unitPrice&quot;:36.99,&quot;grossCents&quot;:1620,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_MC SZNYCEL Z INDY&quot;,&quot;originalCategory&quot;:&quot;Мясо и птица&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Turkey&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-12&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:48,&quot;name&quot;:&quot;Peaches (MC, KO)&quot;,&quot;category&quot;:&quot;Fruit&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:9.99,&quot;grossCents&quot;:999,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_MC BRZOSKWINIE KO&quot;,&quot;originalCategory&quot;:&quot;Фрукты&quot;,&quot;translationNote&quot;:&quot;The truncated suffix KO is retained without assigning a variety or pack type.&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Peaches&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-13&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:49,&quot;name&quot;:&quot;Sunflower sprouts (MC)&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:4.39,&quot;grossCents&quot;:439,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_MC KIEŁKI SŁONECZ&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Sunflower sprouts&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-14&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:50,&quot;name&quot;:&quot;Soup vegetables (MC, TA)&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:6.99,&quot;grossCents&quot;:699,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_MC WŁOSZCZYZNA TA&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;The truncated suffix TA is retained without assigning a pack type.&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Soup vegetables&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-15&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:51,&quot;name&quot;:&quot;No-bake cheesecake (K)&quot;,&quot;category&quot;:&quot;Bakery &amp; sweets&quot;,&quot;qty&quot;:0.546,&quot;unit&quot;:&quot;kg&quot;,&quot;unitPrice&quot;:29.9,&quot;grossCents&quot;:1633,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_SERNIK NA ZIMNO K&quot;,&quot;originalCategory&quot;:&quot;Выпечка и сладости&quot;,&quot;translationNote&quot;:&quot;The truncated suffix K is retained.&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Cheesecake&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-16&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:52,&quot;name&quot;:&quot;Cheddar cheese (MC, 15)&quot;,&quot;category&quot;:&quot;Cheese &amp; curd cheese&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:6,&quot;grossCents&quot;:600,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_MC SER CHEDDAR 15&quot;,&quot;originalCategory&quot;:&quot;Сыры и творог&quot;,&quot;translationNote&quot;:&quot;The number 15 is truncated or lacks a unit on the receipt; no pack weight is inferred.&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Cheddar cheese&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-17&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:53,&quot;name&quot;:&quot;Fresh sweetcorn&quot;,&quot;category&quot;:&quot;Vegetables &amp; herbs&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:7.99,&quot;grossCents&quot;:799,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_KUKURYDZA ŚWIEŻA&quot;,&quot;originalCategory&quot;:&quot;Овощи и зелень&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Sweetcorn&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-18&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:54,&quot;name&quot;:&quot;Fit &amp; Easy salad mix (Z BI)&quot;,&quot;category&quot;:&quot;Prepared meals &amp; salads&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:4.99,&quot;grossCents&quot;:499,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_FIT&amp;EASY MIX Z BI&quot;,&quot;originalCategory&quot;:&quot;Готовые блюда и салаты&quot;,&quot;translationNote&quot;:&quot;The truncated variant code Z BI is retained.&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Salad mix&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-19&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:55,&quot;name&quot;:&quot;Toilet paper (MC, 10X20)&quot;,&quot;category&quot;:&quot;Household products&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:18.39,&quot;grossCents&quot;:1839,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;A_MC PAP TOAL 10X20&quot;,&quot;originalCategory&quot;:&quot;Бытовые товары&quot;,&quot;translationNote&quot;:&quot;The printed pack code 10X20 is retained without expanding the pack configuration.&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Toilet paper&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-20&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:56,&quot;name&quot;:&quot;Jewish-style salad&quot;,&quot;category&quot;:&quot;Prepared meals &amp; salads&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:4.59,&quot;grossCents&quot;:459,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_SURÓWKA ŻYDOWSKA&quot;,&quot;originalCategory&quot;:&quot;Готовые блюда и салаты&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Prepared salads&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-21&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:57,&quot;name&quot;:&quot;Body sponge&quot;,&quot;category&quot;:&quot;Household products&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:4.45,&quot;grossCents&quot;:445,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;A_MYJKA DO CIAŁA&quot;,&quot;originalCategory&quot;:&quot;Бытовые товары&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Body sponges&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-22&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:58,&quot;name&quot;:&quot;Old Amsterdam cheese&quot;,&quot;category&quot;:&quot;Cheese &amp; curd cheese&quot;,&quot;qty&quot;:0.118,&quot;unit&quot;:&quot;kg&quot;,&quot;unitPrice&quot;:138.9,&quot;grossCents&quot;:1639,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_SER OLD AMSTERDAM&quot;,&quot;originalCategory&quot;:&quot;Сыры и творог&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Old Amsterdam cheese&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-23&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:59,&quot;name&quot;:&quot;Green avocado (S)&quot;,&quot;category&quot;:&quot;Fruit&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:6.49,&quot;grossCents&quot;:649,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_AWOKADO ZIELONE S&quot;,&quot;originalCategory&quot;:&quot;Фрукты&quot;,&quot;translationNote&quot;:&quot;The truncated suffix S is retained.&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Avocados&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-24&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:60,&quot;name&quot;:&quot;Fit &amp; Easy salad mix (Z CZ)&quot;,&quot;category&quot;:&quot;Prepared meals &amp; salads&quot;,&quot;qty&quot;:1,&quot;unit&quot;:&quot;piece&quot;,&quot;unitPrice&quot;:5.49,&quot;grossCents&quot;:549,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_FIT&amp;EASY MIX Z CZ&quot;,&quot;originalCategory&quot;:&quot;Готовые блюда и салаты&quot;,&quot;translationNote&quot;:&quot;The truncated variant code Z CZ is retained.&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Salad mix&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-25&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:61,&quot;name&quot;:&quot;Red apples (MC)&quot;,&quot;category&quot;:&quot;Fruit&quot;,&quot;qty&quot;:1.614,&quot;unit&quot;:&quot;kg&quot;,&quot;unitPrice&quot;:4.99,&quot;grossCents&quot;:805,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_MC JABŁKA CZERWON&quot;,&quot;originalCategory&quot;:&quot;Фрукты&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Apples&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-26&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:62,&quot;name&quot;:&quot;Chicken thigh meat&quot;,&quot;category&quot;:&quot;Meat &amp; poultry&quot;,&quot;qty&quot;:0.331,&quot;unit&quot;:&quot;kg&quot;,&quot;unitPrice&quot;:39.99,&quot;grossCents&quot;:1324,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_MIESO Z UDA KURCZ&quot;,&quot;originalCategory&quot;:&quot;Мясо и птица&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Chicken&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false},{&quot;id&quot;:&quot;3-27&quot;,&quot;receipt&quot;:&quot;3&quot;,&quot;date&quot;:&quot;2025-09-17&quot;,&quot;store&quot;:&quot;Carrefour&quot;,&quot;receiptLabel&quot;:&quot;17.09 · Carrefour&quot;,&quot;file&quot;:&quot;Receipt_2025-09-17_210106.jpg&quot;,&quot;excelRow&quot;:63,&quot;name&quot;:&quot;Gutted sea bream&quot;,&quot;category&quot;:&quot;Fish&quot;,&quot;qty&quot;:0.548,&quot;unit&quot;:&quot;kg&quot;,&quot;unitPrice&quot;:48.9,&quot;grossCents&quot;:2680,&quot;discountCents&quot;:0,&quot;originalName&quot;:&quot;C_DORADA PATROSZONA&quot;,&quot;originalCategory&quot;:&quot;Рыба&quot;,&quot;translationNote&quot;:&quot;&quot;,&quot;translationSource&quot;:&quot;&quot;,&quot;product&quot;:&quot;Sea bream&quot;,&quot;packKg&quot;:null,&quot;probable&quot;:false}]}&lt;/script&gt;
+  &lt;script&gt;
+  (()=&gt;{
+    /* MODEL_START */
+    const defaults={version:2,receipt:&#x27;all&#x27;,category:&#x27;all&#x27;,product:&#x27;all&#x27;,discount:&#x27;all&#x27;,unit:&#x27;all&#x27;,q:&#x27;&#x27;,basis:&#x27;net&#x27;,metric:&#x27;spend&#x27;,group:&#x27;line&#x27;,sort:&#x27;descending&#x27;,panel:&#x27;overview&#x27;,limit:&#x27;10&#x27;,perPage:&#x27;10&#x27;,tableSort:&#x27;net&#x27;,tableDir:&#x27;descending&#x27;,page:0,selected:null};
+    const number=(v,d=2)=&gt;new Intl.NumberFormat(&#x27;ru-RU&#x27;,{minimumFractionDigits:d,maximumFractionDigits:d}).format(v);
+    const money=v=&gt;number(v)+&#x27; PLN&#x27;;
+    const pct=v=&gt;number(v)+&#x27;%&#x27;;
+    const qty=v=&gt;new Intl.NumberFormat(&#x27;ru-RU&#x27;,{maximumFractionDigits:3}).format(v);
+    const netCents=r=&gt;r.grossCents-r.discountCents;
+    const unitName=r=&gt;r.unit===&#x27;kg&#x27;?&#x27;кг&#x27;:&#x27;шт./уп.&#x27;;
+    const isPrice=s=&gt;s.metric.startsWith(&#x27;price-&#x27;);
+    const fold=s=&gt;String(s).normalize(&#x27;NFD&#x27;).replace(/[\u0300-\u036f]/g,&#x27;&#x27;).toLocaleLowerCase().replace(/ł/g,&#x27;l&#x27;);
+    function normalizeState(raw,data){
+      const s={...defaults};
+      if(!raw||![1,2].includes(raw.version))return s;
+      const allowed={receipt:[&#x27;all&#x27;,...data.receipts.map(r=&gt;r.id)],category:[&#x27;all&#x27;,...new Set(data.items.map(r=&gt;r.category))],product:[&#x27;all&#x27;,...new Set(data.items.map(r=&gt;r.product))],discount:[&#x27;all&#x27;,&#x27;yes&#x27;,&#x27;no&#x27;],unit:[&#x27;all&#x27;,&#x27;kg&#x27;,&#x27;piece&#x27;],basis:[&#x27;net&#x27;,&#x27;gross&#x27;],metric:[&#x27;spend&#x27;,&#x27;saving&#x27;,&#x27;saving-pct&#x27;,&#x27;price-kg&#x27;,&#x27;price-piece&#x27;,&#x27;price-normalized&#x27;],group:[&#x27;line&#x27;,&#x27;product&#x27;,&#x27;category&#x27;,&#x27;store&#x27;,&#x27;receipt&#x27;],sort:[&#x27;descending&#x27;,&#x27;ascending&#x27;],panel:[&#x27;overview&#x27;,&#x27;ranking&#x27;,&#x27;discounts&#x27;,&#x27;table&#x27;],limit:[&#x27;5&#x27;,&#x27;10&#x27;,&#x27;20&#x27;,&#x27;all&#x27;],perPage:[&#x27;10&#x27;,&#x27;25&#x27;,&#x27;all&#x27;],tableSort:[&#x27;name&#x27;,&#x27;store&#x27;,&#x27;qty&#x27;,&#x27;unitPrice&#x27;,&#x27;gross&#x27;,&#x27;saving&#x27;,&#x27;net&#x27;,&#x27;savingPct&#x27;,&#x27;normalized&#x27;],tableDir:[&#x27;ascending&#x27;,&#x27;descending&#x27;]};
+      for(const [k,values]of Object.entries(allowed))if(values.includes(raw[k]))s[k]=raw[k];
+      s.q=typeof raw.q===&#x27;string&#x27;?raw.q.slice(0,200):&#x27;&#x27;;
+      s.page=Number.isInteger(raw.page)&amp;&amp;raw.page&gt;=0?raw.page:0;
+      s.selected=data.items.some(r=&gt;r.id===raw.selected)?raw.selected:null;
+      return harmonize(s);
+    }
+    function harmonize(s){
+      if(s.metric===&#x27;price-kg&#x27;)s.unit=&#x27;kg&#x27;;
+      if(s.metric===&#x27;price-piece&#x27;)s.unit=&#x27;piece&#x27;;
+      if(s.metric===&#x27;price-normalized&#x27;)s.unit=&#x27;all&#x27;;
+      if(s.panel===&#x27;discounts&#x27;||[&#x27;saving&#x27;,&#x27;saving-pct&#x27;].includes(s.metric))s.discount=&#x27;yes&#x27;;
+      return s;
+    }
+    function filteredItems(data,s){
+      const words=fold(s.q).trim().split(/\s+/).filter(Boolean);
+      return data.items.filter(r=&gt;(s.receipt===&#x27;all&#x27;||r.receipt===s.receipt)&amp;&amp;(s.category===&#x27;all&#x27;||r.category===s.category)&amp;&amp;(s.product===&#x27;all&#x27;||r.product===s.product)&amp;&amp;(s.discount===&#x27;all&#x27;||(s.discount===&#x27;yes&#x27;?r.discountCents&gt;0:r.discountCents===0))&amp;&amp;(s.unit===&#x27;all&#x27;||r.unit===s.unit)&amp;&amp;(!isPrice(s)||s.metric!==&#x27;price-normalized&#x27;||r.unit===&#x27;kg&#x27;||r.packKg&gt;0)&amp;&amp;words.every(w=&gt;fold([r.name,r.originalName,r.product,r.category,r.store].join(&#x27; &#x27;)).includes(w)));
+    }
+    function price(r,s,normalized=false){
+      let p=r.unitPrice-(s.basis===&#x27;net&#x27;?r.discountCents/100/r.qty:0);
+      if(normalized&amp;&amp;r.unit!==&#x27;kg&#x27;)p=r.packKg&gt;0?p/r.packKg:null;
+      return p;
+    }
+    function tableValue(r,key,s){
+      return ({name:r.name,store:r.store,qty:r.qty,unitPrice:r.unitPrice,gross:r.grossCents,saving:r.discountCents,net:netCents(r),savingPct:r.discountCents/r.grossCents,normalized:price(r,s,true)})[key];
+    }
+    function buildView(data,s){
+      const items=filteredItems(data,s), gross=items.reduce((n,r)=&gt;n+r.grossCents,0),saving=items.reduce((n,r)=&gt;n+r.discountCents,0),net=gross-saving;
+      const amount=s.basis===&#x27;net&#x27;?net:gross;
+      const amountOf=r=&gt;s.basis===&#x27;net&#x27;?netCents(r):r.grossCents;
+      function groups(key){
+        const map=new Map();
+        for(const r of items){const label=key===&#x27;receipt&#x27;?r.receiptLabel:r[key];let g=map.get(label);if(!g){g={label,key:label,gross:0,saving:0,amount:0,items:[],probable:0};map.set(label,g);}g.gross+=r.grossCents;g.saving+=r.discountCents;g.amount+=amountOf(r);g.items.push(r);g.probable+=r.probable?1:0;}
+        return [...map.values()];
+      }
+      const categories=groups(&#x27;category&#x27;).sort((a,b)=&gt;b.amount-a.amount);
+      const receipts=data.receipts.filter(g=&gt;s.receipt===&#x27;all&#x27;||s.receipt===g.id).map(g=&gt;({label:g.label,key:g.id,amount:items.filter(r=&gt;r.receipt===g.id).reduce((n,r)=&gt;n+amountOf(r),0)}));
+      let ranking;
+      if(isPrice(s)||s.group===&#x27;line&#x27;)ranking=items.map(r=&gt;({label:r.name,key:r.id,items:[r],probable:r.probable?1:0,gross:r.grossCents,saving:r.discountCents,amount:amountOf(r),value:isPrice(s)?price(r,s,s.metric===&#x27;price-normalized&#x27;):s.metric===&#x27;saving&#x27;?r.discountCents/100:s.metric===&#x27;saving-pct&#x27;?r.discountCents/r.grossCents*100:amountOf(r)/100}));
+      else ranking=groups(s.group).map(g=&gt;({...g,value:s.metric===&#x27;saving&#x27;?g.saving/100:s.metric===&#x27;saving-pct&#x27;?g.saving/g.gross*100:g.amount/100}));
+      ranking.sort((a,b)=&gt;(s.sort===&#x27;ascending&#x27;?a.value-b.value:b.value-a.value)||a.label.localeCompare(b.label,&#x27;en&#x27;));
+      const tableItems=[...items].sort((a,b)=&gt;{let x=tableValue(a,s.tableSort,s),y=tableValue(b,s.tableSort,s);if(x===null)x=-Infinity;if(y===null)y=-Infinity;let c=typeof x===&#x27;string&#x27;?x.localeCompare(y,&#x27;en&#x27;):x-y;return (s.tableDir===&#x27;ascending&#x27;?c:-c)||a.excelRow-b.excelRow;});
+      const per=s.perPage===&#x27;all&#x27;?Math.max(1,tableItems.length):Number(s.perPage),pages=Math.max(1,Math.ceil(tableItems.length/per)),page=Math.min(s.page,pages-1),tableRows=tableItems.slice(page*per,(page+1)*per);
+      return {items,gross,saving,net,amount,savingPct:gross?saving/gross*100:0,receiptCount:new Set(items.map(r=&gt;r.receipt)).size,pieces:items.filter(r=&gt;r.unit===&#x27;piece&#x27;).reduce((n,r)=&gt;n+r.qty,0),kg:items.filter(r=&gt;r.unit===&#x27;kg&#x27;).reduce((n,r)=&gt;n+r.qty,0),categories,receipts,ranking,rankRows:s.limit===&#x27;all&#x27;?ranking:ranking.slice(0,Number(s.limit)),tableItems,tableRows,page,pages,per};
+    }
+    /* MODEL_END */
+    const root=document.getElementById(&#x27;receipts-explorer&#x27;);
+    const data=JSON.parse(root.querySelector(&#x27;#rx-data&#x27;).textContent);
+    const saved=window.openai?.widgetState;
+    let state=normalizeState(saved?.privateContent?.receiptsState||saved?.modelContent?.receiptsState,data);
+    const $=id=&gt;root.querySelector(&#x27;#&#x27;+id);
+    const esc=s=&gt;String(s).replace(/[&amp;&lt;&gt;&quot;&#x27;]/g,c=&gt;({&#x27;&amp;&#x27;:&#x27;&amp;amp;&#x27;,&#x27;&lt;&#x27;:&#x27;&amp;lt;&#x27;,&#x27;&gt;&#x27;:&#x27;&amp;gt;&#x27;,&#x27;&quot;&#x27;:&#x27;&amp;quot;&#x27;,&quot;&#x27;&quot;:&#x27;&amp;#39;&#x27;}[c]));
+    const controls={};for(const k of [&#x27;q&#x27;,&#x27;receipt&#x27;,&#x27;category&#x27;,&#x27;product&#x27;,&#x27;discount&#x27;,&#x27;unit&#x27;,&#x27;metric&#x27;,&#x27;group&#x27;,&#x27;sort&#x27;,&#x27;limit&#x27;,&#x27;perPage&#x27;])controls[k]=$(k===&#x27;perPage&#x27;?&#x27;rx-per-page&#x27;:&#x27;rx-&#x27;+k);
+    function options(el,rows,label){el.replaceChildren();const all=document.createElement(&#x27;option&#x27;);all.value=&#x27;all&#x27;;all.textContent=label;el.append(all);for(const [value,text]of rows){const o=document.createElement(&#x27;option&#x27;);o.value=value;o.textContent=text;el.append(o);}}
+    options(controls.receipt,data.receipts.map(r=&gt;[r.id,r.label]),&#x27;Все чеки&#x27;);
+    options(controls.category,[...new Set(data.items.map(r=&gt;r.category))].sort().map(x=&gt;[x,x]),&#x27;Все категории&#x27;);
+    const widths=new Map(),heights=new Map();
+    const unitText=r=&gt;r.unit===&#x27;kg&#x27;?&#x27;PLN/кг&#x27;:&#x27;PLN/шт./уп.&#x27;;
+    function save(){if(window.openai?.setWidgetState){const snap={receiptsState:{...state}};window.openai.setWidgetState({modelContent:snap,privateContent:snap}).catch(()=&gt;{});}}
+    function badge(probable){return probable?&#x27;&lt;span class=&quot;viz-badge&quot;&gt;Вероятное соответствие&lt;/span&gt;&#x27;:&#x27;&#x27;;}
+    function action(label,kind,key){const max=window.innerWidth&lt;600?28:70;const visible=label.length&gt;max?label.slice(0,max-1)+&#x27;…&#x27;:label;return &#x27;&lt;button class=&quot;btn btn-ghost&quot; type=&quot;button&quot; aria-label=&quot;&#x27;+esc(label)+&#x27;&quot;&#x27;+(visible!==label?&#x27; data-tooltip=&quot;&#x27;+esc(label)+&#x27;&quot;&#x27;:&#x27;&#x27;)+&#x27; data-rx-action=&quot;&#x27;+esc(kind)+&#x27;&quot; data-rx-key=&quot;&#x27;+esc(key)+&#x27;&quot;&gt;&#x27;+esc(visible)+&#x27;&lt;/button&gt;&#x27;;}
+    function bar(label,value,max,key,secondary=false){const previous=widths.has(key)?widths.get(key):value;const start=max?Math.max(0,Math.min(1000,previous/max*1000)):0;const target=max?Math.max(0,Math.min(1000,value/max*1000)):0;widths.set(key,value);return &#x27;&lt;svg class=&quot;rx-bar-track&quot; viewBox=&quot;0 0 1000 12&quot; preserveAspectRatio=&quot;none&quot; role=&quot;img&quot; aria-label=&quot;&#x27;+esc(label)+&#x27;&quot;&gt;&lt;rect width=&quot;1000&quot; height=&quot;12&quot; fill=&quot;var(--muted)&quot;/&gt;&lt;rect class=&quot;rx-bar-mark&#x27;+(secondary?&#x27; rx-before-mark&#x27;:&#x27;&#x27;)+&#x27;&quot; height=&quot;12&quot; width=&quot;&#x27;+start+&#x27;&quot; data-target-width=&quot;&#x27;+target+&#x27;&quot; data-tooltip=&quot;&#x27;+esc(label)+&#x27;&quot;/&gt;&lt;/svg&gt;&#x27;;}
+    function barList(rows,kind,metric=&#x27;money&#x27;){
+      const max=Math.max(0,...rows.map(r=&gt;r.value));
+      return rows.map(r=&gt;&#x27;&lt;div class=&quot;rx-bar-row&quot;&gt;&lt;div class=&quot;rx-caption&quot;&gt;&lt;span&gt;&#x27;+action(r.label,kind,r.key)+&#x27; &#x27;+badge(r.probable)+&#x27;&lt;/span&gt;&lt;span class=&quot;rx-value&quot;&gt;&#x27;+(metric===&#x27;pct&#x27;?pct(r.value):money(r.value))+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+bar(r.label+&#x27;: &#x27;+(metric===&#x27;pct&#x27;?pct(r.value):money(r.value)),r.value,max,kind+&#x27;-&#x27;+r.key)+&#x27;&lt;div class=&quot;text-small text-muted&quot;&gt;&#x27;+(kind===&#x27;line&#x27;?esc(r.items[0].store+&#x27; · &#x27;+r.items[0].receiptLabel.split(&#x27; · &#x27;)[0]):r.items.length+&#x27; товарных строк&#x27;)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;).join(&#x27;&#x27;);
+    }
+    function renderOverview(v){
+      $(&#x27;rx-receipt-title&#x27;).textContent=v.items.length===data.items.length&amp;&amp;state.basis===&#x27;net&#x27;?&#x27;Суммы чеков&#x27;:&#x27;Выборка по чекам&#x27;;
+      const cols=v.receipts.map(g=&gt;{const h=g.amount/100/350*216;const previous=heights.has(g.key)?heights.get(g.key):h;heights.set(g.key,h);return &#x27;&lt;div class=&quot;rx-column&quot;&gt;&lt;div class=&quot;rx-column-shaft&quot;&gt;&lt;span class=&quot;text-small rx-value&quot;&gt;&#x27;+number(g.amount/100)+&#x27;&lt;/span&gt;&lt;span class=&quot;rx-column-mark&quot; role=&quot;img&quot; aria-label=&quot;&#x27;+esc(g.label+&#x27;: &#x27;+money(g.amount/100))+&#x27;&quot; style=&quot;height:&#x27;+previous+&#x27;px&quot; data-target-height=&quot;&#x27;+h+&#x27;&quot;&gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rx-column-label&quot;&gt;&#x27;+action(g.label,&#x27;receipt&#x27;,g.key)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;;}).join(&#x27;&#x27;);
+      $(&#x27;rx-receipt-chart&#x27;).innerHTML=&#x27;&lt;div class=&quot;rx-columns&quot;&gt;&lt;div class=&quot;rx-y-axis text-small&quot;&gt;&lt;span&gt;350&lt;/span&gt;&lt;span&gt;175&lt;/span&gt;&lt;span&gt;0 PLN&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rx-column-grid&quot;&gt;&#x27;+cols+&#x27;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;rx-receipt-bars&quot;&gt;&#x27;+v.receipts.map(g=&gt;&#x27;&lt;div class=&quot;rx-bar-row&quot;&gt;&lt;div class=&quot;rx-caption&quot;&gt;&#x27;+action(g.label,&#x27;receipt&#x27;,g.key)+&#x27;&lt;span class=&quot;rx-value&quot;&gt;&#x27;+money(g.amount/100)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+bar(g.label+&#x27;: &#x27;+money(g.amount/100),g.amount/100,350,&#x27;mobile-receipt-&#x27;+g.key)+&#x27;&lt;/div&gt;&#x27;).join(&#x27;&#x27;)+&#x27;&lt;div class=&quot;rx-axis text-small&quot;&gt;&lt;span&gt;0 PLN&lt;/span&gt;&lt;span&gt;350 PLN&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&#x27;;
+      const max=Math.max(0,...v.categories.map(g=&gt;g.amount));
+      $(&#x27;rx-category-chart&#x27;).innerHTML=&#x27;&lt;div class=&quot;rx-bars&quot;&gt;&#x27;+v.categories.map(g=&gt;&#x27;&lt;div class=&quot;rx-bar-row&quot;&gt;&lt;div class=&quot;rx-caption&quot;&gt;&lt;span&gt;&#x27;+action(g.label,&#x27;category&#x27;,g.key)+&#x27;&lt;/span&gt;&lt;span class=&quot;rx-value&quot;&gt;&#x27;+money(g.amount/100)+&#x27; · &#x27;+pct(v.amount?g.amount/v.amount*100:0)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+bar(g.label+&#x27;: &#x27;+money(g.amount/100),g.amount,max,&#x27;category-&#x27;+g.key)+&#x27;&lt;/div&gt;&#x27;).join(&#x27;&#x27;)+&#x27;&lt;/div&gt;&lt;div class=&quot;rx-axis text-small&quot;&gt;&lt;span&gt;0 PLN&lt;/span&gt;&lt;span&gt;&#x27;+money(max/100)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;;
+    }
+    function renderRanking(v){
+      const unit=state.metric===&#x27;price-kg&#x27;||state.metric===&#x27;price-normalized&#x27;?&#x27;PLN/кг&#x27;:state.metric===&#x27;price-piece&#x27;?&#x27;PLN/шт./уп.&#x27;:state.metric===&#x27;saving-pct&#x27;?&#x27;%&#x27;:&#x27;PLN&#x27;;
+      const scope=isPrice(state)?&#x27;цены отдельных позиций; &#x27;+unit:state.metric===&#x27;saving-pct&#x27;?&#x27;взвешенный процент скидки&#x27;:state.metric===&#x27;saving&#x27;?&#x27;экономия в PLN&#x27;:state.basis===&#x27;net&#x27;?&#x27;расходы после скидок&#x27;:&#x27;суммы до скидок&#x27;;
+      $(&#x27;rx-rank-context&#x27;).textContent=&#x27;Показано &#x27;+v.rankRows.length+&#x27; из &#x27;+v.ranking.length+&#x27; · &#x27;+scope;
+      $(&#x27;rx-price-note&#x27;).hidden=!isPrice(state);
+      controls.group.disabled=isPrice(state);controls.group.value=isPrice(state)?&#x27;line&#x27;:state.group;
+      const kind=isPrice(state)?&#x27;line&#x27;:state.group;
+      $(&#x27;rx-rank-chart&#x27;).innerHTML=barList(v.rankRows,kind,state.metric===&#x27;saving-pct&#x27;?&#x27;pct&#x27;:&#x27;money&#x27;);
+    }
+    function renderDiscounts(v){
+      $(&#x27;rx-discount-chart&#x27;).innerHTML=v.items.filter(r=&gt;r.discountCents&gt;0).map(r=&gt;&#x27;&lt;div class=&quot;rx-stack&quot;&gt;&lt;div class=&quot;rx-caption&quot;&gt;&lt;span&gt;&#x27;+action(r.name,&#x27;line&#x27;,r.id)+&#x27; &#x27;+badge(r.probable)+&#x27;&lt;/span&gt;&lt;span class=&quot;rx-value&quot;&gt;−&#x27;+money(r.discountCents/100)+&#x27; · &#x27;+pct(r.discountCents/r.grossCents*100)+&#x27;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;rx-caption text-small&quot;&gt;&lt;span&gt;До скидки&lt;/span&gt;&lt;span&gt;&#x27;+money(r.grossCents/100)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+bar(&#x27;До скидки: &#x27;+money(r.grossCents/100),r.grossCents/100,25,&#x27;discount-before-&#x27;+r.id,true)+&#x27;&lt;div class=&quot;rx-caption text-small&quot;&gt;&lt;span&gt;После скидки&lt;/span&gt;&lt;span&gt;&#x27;+money(netCents(r)/100)+&#x27;&lt;/span&gt;&lt;/div&gt;&#x27;+bar(&#x27;После скидки: &#x27;+money(netCents(r)/100),netCents(r)/100,25,&#x27;discount-after-&#x27;+r.id)+&#x27;&lt;div class=&quot;text-small text-muted&quot;&gt;&#x27;+qty(r.qty)+&#x27; &#x27;+unitName(r)+&#x27; · &#x27;+esc(r.receiptLabel)+&#x27;&lt;/div&gt;&lt;/div&gt;&#x27;).join(&#x27;&#x27;);
+    }
+    function renderTable(v){
+      const headers=[[&#x27;name&#x27;,&#x27;Товар&#x27;],[&#x27;store&#x27;,&#x27;Магазин / дата&#x27;],[&#x27;qty&#x27;,&#x27;Количество&#x27;],[&#x27;unitPrice&#x27;,&#x27;Цена за ед.&#x27;],[&#x27;gross&#x27;,&#x27;До скидки&#x27;],[&#x27;saving&#x27;,&#x27;Скидка&#x27;],[&#x27;net&#x27;,&#x27;После скидки&#x27;],[&#x27;savingPct&#x27;,&#x27;Скидка, %&#x27;]];
+      if(state.metric===&#x27;price-normalized&#x27;)headers.push([&#x27;normalized&#x27;,&#x27;Цена, PLN/кг&#x27;]);
+      $(&#x27;rx-table-head&#x27;).innerHTML=headers.map(([key,label])=&gt;&#x27;&lt;th scope=&quot;col&quot; aria-sort=&quot;&#x27;+(state.tableSort===key?(state.tableDir===&#x27;ascending&#x27;?&#x27;ascending&#x27;:&#x27;descending&#x27;):&#x27;none&#x27;)+&#x27;&quot;&gt;&#x27;+action(label+(state.tableSort===key?(state.tableDir===&#x27;ascending&#x27;?&#x27; ↑&#x27;:&#x27; ↓&#x27;):&#x27;&#x27;),&#x27;sort&#x27;,key)+&#x27;&lt;/th&gt;&#x27;).join(&#x27;&#x27;);
+      $(&#x27;rx-table-body&#x27;).innerHTML=v.tableRows.map(r=&gt;&#x27;&lt;tr&gt;&lt;td class=&quot;rx-product-cell&quot;&gt;&#x27;+action(r.name,&#x27;line&#x27;,r.id)+&#x27; &#x27;+badge(r.probable)+&#x27;&lt;div class=&quot;text-small text-muted&quot;&gt;&#x27;+esc(r.product)+&#x27;&lt;/div&gt;&lt;/td&gt;&lt;td&gt;&#x27;+esc(r.store)+&#x27;&lt;div class=&quot;text-small text-muted&quot;&gt;&#x27;+esc(r.receiptLabel.split(&#x27; · &#x27;)[0])+&#x27;&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;text-end text-nowrap&quot;&gt;&#x27;+qty(r.qty)+&#x27; &#x27;+unitName(r)+&#x27;&lt;/td&gt;&lt;td class=&quot;text-end text-nowrap&quot;&gt;&#x27;+number(r.unitPrice)+&#x27;&lt;div class=&quot;text-small text-muted&quot;&gt;&#x27;+unitText(r)+&#x27;&lt;/div&gt;&lt;/td&gt;&lt;td class=&quot;text-end text-nowrap&quot;&gt;&#x27;+number(r.grossCents/100)+&#x27;&lt;/td&gt;&lt;td class=&quot;text-end text-nowrap&quot;&gt;&#x27;+(r.discountCents?&#x27;−&#x27;+number(r.discountCents/100):&#x27;—&#x27;)+&#x27;&lt;/td&gt;&lt;td class=&quot;text-end text-nowrap&quot;&gt;&#x27;+number(netCents(r)/100)+&#x27;&lt;/td&gt;&lt;td class=&quot;text-end text-nowrap&quot;&gt;&#x27;+(r.discountCents?pct(r.discountCents/r.grossCents*100):&#x27;—&#x27;)+&#x27;&lt;/td&gt;&#x27;+(state.metric===&#x27;price-normalized&#x27;?&#x27;&lt;td class=&quot;text-end text-nowrap&quot;&gt;&#x27;+(price(r,state,true)===null?&#x27;—&#x27;:number(price(r,state,true)))+&#x27;&lt;/td&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/tr&gt;&#x27;).join(&#x27;&#x27;);
+      $(&#x27;rx-table-foot&#x27;).innerHTML=&#x27;&lt;tr&gt;&lt;th colspan=&quot;4&quot;&gt;Итого по всей выборке · PLN&lt;/th&gt;&lt;td class=&quot;text-end&quot;&gt;&#x27;+number(v.gross/100)+&#x27;&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;&#x27;+(v.saving?&#x27;−&#x27;+number(v.saving/100):&#x27;—&#x27;)+&#x27;&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;&#x27;+number(v.net/100)+&#x27;&lt;/td&gt;&lt;td class=&quot;text-end&quot;&gt;&#x27;+pct(v.savingPct)+&#x27;&lt;/td&gt;&#x27;+(state.metric===&#x27;price-normalized&#x27;?&#x27;&lt;td&gt;—&lt;/td&gt;&#x27;:&#x27;&#x27;)+&#x27;&lt;/tr&gt;&#x27;;
+      $(&#x27;rx-page-info&#x27;).textContent=v.items.length?&#x27;Строки &#x27;+(v.page*v.per+1)+&#x27;–&#x27;+Math.min(v.items.length,(v.page+1)*v.per)+&#x27; из &#x27;+v.items.length+&#x27; · страница &#x27;+(v.page+1)+&#x27; из &#x27;+v.pages:&#x27;0 строк&#x27;;
+      $(&#x27;rx-prev&#x27;).disabled=v.page===0;$(&#x27;rx-next&#x27;).disabled=v.page&gt;=v.pages-1;
+    }
+    function renderDetail(v){
+      const r=v.items.find(x=&gt;x.id===state.selected);$(&#x27;rx-detail&#x27;).hidden=!r;if(!r)return;
+      $(&#x27;rx-detail-title&#x27;).textContent=r.name;
+      const normalized=price(r,state,true);
+      $(&#x27;rx-detail-content&#x27;).innerHTML=badge(r.probable)+&#x27;&lt;div class=&quot;rx-detail-grid&quot;&gt;&lt;div class=&quot;rx-stack&quot;&gt;&lt;div&gt;Продукт: &#x27;+esc(r.product)+&#x27;&lt;/div&gt;&lt;div&gt;Категория: &#x27;+esc(r.category)+&#x27;&lt;/div&gt;&lt;div&gt;&#x27;+esc(r.receiptLabel)+&#x27;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;rx-stack&quot;&gt;&lt;div&gt;&#x27;+qty(r.qty)+&#x27; &#x27;+unitName(r)+&#x27; × &#x27;+money(r.unitPrice)+&#x27;&lt;/div&gt;&lt;div&gt;До скидки: &#x27;+money(r.grossCents/100)+&#x27;&lt;/div&gt;&lt;div&gt;Скидка: &#x27;+money(r.discountCents/100)+&#x27; (&#x27;+pct(r.discountCents/r.grossCents*100)+&#x27;)&lt;/div&gt;&lt;div&gt;После скидки: &#x27;+money(netCents(r)/100)+&#x27;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;rx-note text-small&quot;&gt;На чеке: &#x27;+esc(r.originalName)+&#x27;&lt;/div&gt;&#x27;+(r.translationNote?&#x27;&lt;div class=&quot;rx-note text-small&quot;&gt;&#x27;+esc(r.translationNote)+&#x27;&lt;/div&gt;&#x27;:&#x27;&#x27;)+(r.translationSource?&#x27;&lt;div&gt;&lt;a href=&quot;&#x27;+esc(r.translationSource)+&#x27;&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt;Каталог производителя · вероятное соответствие&lt;/a&gt;&lt;/div&gt;&#x27;:&#x27;&#x27;)+((r.unit===&#x27;kg&#x27;||r.packKg&gt;0)?&#x27;&lt;div class=&quot;text-small&quot;&gt;Сравнимая цена &#x27;+(state.basis===&#x27;net&#x27;?&#x27;после&#x27;:&#x27;до&#x27;)+&#x27; скидки: &#x27;+number(normalized)+&#x27; PLN/кг&#x27;+(r.unit===&#x27;piece&#x27;?&#x27; · масса упаковки &#x27;+qty(r.packKg)+&#x27; кг&#x27;:&#x27; · напечатанная цена за кг&#x27;)+&#x27;&lt;/div&gt;&#x27;:&#x27;&lt;div class=&quot;text-small text-muted&quot;&gt;Масса упаковки однозначно не указана; цена за кг не рассчитывается.&lt;/div&gt;&#x27;)+&#x27;&lt;div class=&quot;text-small text-muted rx-note&quot;&gt;Источник: &#x27;+esc(r.file)+&#x27; · строка Excel &#x27;+r.excelRow+&#x27;&lt;/div&gt;&#x27;;
+    }
+    function activeFilters(){
+      const tags=[];if(state.q)tags.push([&#x27;q&#x27;,&#x27;Поиск: &#x27;+state.q]);if(state.receipt!==&#x27;all&#x27;)tags.push([&#x27;receipt&#x27;,&#x27;Чек: &#x27;+data.receipts.find(r=&gt;r.id===state.receipt).label]);if(state.category!==&#x27;all&#x27;)tags.push([&#x27;category&#x27;,state.category]);if(state.product!==&#x27;all&#x27;)tags.push([&#x27;product&#x27;,state.product]);if(state.discount!==&#x27;all&#x27;)tags.push([&#x27;discount&#x27;,state.discount===&#x27;yes&#x27;?&#x27;Со скидкой&#x27;:&#x27;Без отдельной скидки&#x27;]);if(state.unit!==&#x27;all&#x27;)tags.push([&#x27;unit&#x27;,state.unit===&#x27;kg&#x27;?&#x27;Только весовые, кг&#x27;:&#x27;Только шт./уп.&#x27;]);if(state.metric===&#x27;price-normalized&#x27;)tags.push([&#x27;metric&#x27;,&#x27;Известна масса для пересчёта в кг&#x27;]);
+      $(&#x27;rx-active&#x27;).innerHTML=tags.length?tags.map(([key,label])=&gt;action(label+&#x27; ×&#x27;,&#x27;clear&#x27;,key)).join(&#x27;&#x27;):&#x27;&lt;span class=&quot;text-small text-muted&quot;&gt;Все покупки · фильтры не применены&lt;/span&gt;&#x27;;
+    }
+    function render(){
+      harmonize(state);const v=buildView(data,state);state.page=v.page;
+      const products=[...new Set(data.items.filter(r=&gt;state.category===&#x27;all&#x27;||r.category===state.category).map(r=&gt;r.product))].sort();
+      options(controls.product,products.map(x=&gt;[x,x]),&#x27;Все продукты&#x27;);
+      for(const [k,el]of Object.entries(controls))if(k!==&#x27;q&#x27;||document.activeElement!==el)el.value=state[k];
+      for(const b of root.querySelectorAll(&#x27;[data-rx-basis]&#x27;))b.setAttribute(&#x27;aria-pressed&#x27;,String(b.dataset.rxBasis===state.basis));
+      for(const b of root.querySelectorAll(&#x27;[data-rx-tab]&#x27;))b.setAttribute(&#x27;aria-pressed&#x27;,String(b.dataset.rxTab===state.panel));
+      for(const p of root.querySelectorAll(&#x27;[data-rx-panel]&#x27;))p.hidden=p.dataset.rxPanel!==state.panel||!v.items.length;
+      $(&#x27;rx-total-label&#x27;).textContent=state.basis===&#x27;net&#x27;?&#x27;Расходы после скидок&#x27;:&#x27;Сумма до скидок&#x27;;$(&#x27;rx-total&#x27;).textContent=money(v.amount/100);$(&#x27;rx-saving&#x27;).textContent=money(v.saving/100);$(&#x27;rx-saving-rate&#x27;).textContent=pct(v.savingPct)+&#x27; от суммы до скидок&#x27;;$(&#x27;rx-count&#x27;).textContent=String(v.items.length);$(&#x27;rx-receipt-count&#x27;).textContent=v.receiptCount+&#x27; &#x27;+(v.receiptCount===1?&#x27;чек&#x27;:&#x27;чека&#x27;)+&#x27; в выборке&#x27;;$(&#x27;rx-unit-count&#x27;).textContent=qty(v.pieces)+&#x27; шт./уп. · &#x27;+qty(v.kg)+&#x27; кг&#x27;;
+      $(&#x27;rx-status&#x27;).textContent=&#x27;Одна выборка для карточек, графиков и таблицы: &#x27;+v.items.length+&#x27; из 62 строк · &#x27;+(state.basis===&#x27;net&#x27;?&#x27;после&#x27;:&#x27;до&#x27;)+&#x27; скидок&#x27;+(state.metric===&#x27;price-normalized&#x27;?&#x27; · с известной массой&#x27;:&#x27;&#x27;);$(&#x27;rx-empty&#x27;).hidden=Boolean(v.items.length);
+      activeFilters();renderOverview(v);renderRanking(v);renderDiscounts(v);renderTable(v);renderDetail(v);
+      requestAnimationFrame(()=&gt;{for(const r of root.querySelectorAll(&#x27;[data-target-width]&#x27;))r.setAttribute(&#x27;width&#x27;,r.dataset.targetWidth);for(const r of root.querySelectorAll(&#x27;[data-target-height]&#x27;))r.style.height=r.dataset.targetHeight+&#x27;px&#x27;;});
+    }
+    function reset(){state={...defaults};render();save();}
+    function setFilter(key,value){
+      state[key]=value;state.page=0;state.selected=null;
+      if(key===&#x27;category&#x27;&amp;&amp;state.product!==&#x27;all&#x27;&amp;&amp;!data.items.some(r=&gt;r.category===value&amp;&amp;r.product===state.product))state.product=&#x27;all&#x27;;
+      if(key===&#x27;unit&#x27;&amp;&amp;isPrice(state))state.metric=&#x27;spend&#x27;;
+      if(key===&#x27;discount&#x27;&amp;&amp;value!==&#x27;yes&#x27;){if([&#x27;saving&#x27;,&#x27;saving-pct&#x27;].includes(state.metric))state.metric=&#x27;spend&#x27;;if(state.panel===&#x27;discounts&#x27;)state.panel=&#x27;overview&#x27;;}
+      harmonize(state);render();save();
+    }
+    for(const [key,el]of Object.entries(controls))el.addEventListener(key===&#x27;q&#x27;?&#x27;input&#x27;:&#x27;change&#x27;,()=&gt;setFilter(key,el.value));
+    root.addEventListener(&#x27;click&#x27;,e=&gt;{
+      const resetButton=e.target.closest(&#x27;#rx-reset,[data-rx-reset]&#x27;);if(resetButton){reset();return;}
+      const basis=e.target.closest(&#x27;[data-rx-basis]&#x27;);if(basis){state.basis=basis.dataset.rxBasis;render();save();return;}
+      const tab=e.target.closest(&#x27;[data-rx-tab]&#x27;);if(tab){state.panel=tab.dataset.rxTab;if(state.panel===&#x27;discounts&#x27;)state.discount=&#x27;yes&#x27;;state.page=0;render();save();return;}
+      const a=e.target.closest(&#x27;[data-rx-action]&#x27;);if(!a)return;const kind=a.dataset.rxAction,key=a.dataset.rxKey;
+      if(kind===&#x27;line&#x27;){state.selected=key;render();$(&#x27;rx-detail&#x27;).scrollIntoView({block:&#x27;nearest&#x27;,behavior:&#x27;auto&#x27;});}
+      else if(kind===&#x27;clear&#x27;){if(key===&#x27;unit&#x27;||key===&#x27;metric&#x27;){state.metric=&#x27;spend&#x27;;state.unit=&#x27;all&#x27;;}else if(key===&#x27;discount&#x27;){state.discount=&#x27;all&#x27;;if(state.panel===&#x27;discounts&#x27;)state.panel=&#x27;overview&#x27;;if([&#x27;saving&#x27;,&#x27;saving-pct&#x27;].includes(state.metric))state.metric=&#x27;spend&#x27;;}else state[key]=key===&#x27;q&#x27;?&#x27;&#x27;:&#x27;all&#x27;;state.page=0;state.selected=null;render();}
+      else if(kind===&#x27;sort&#x27;){state.tableDir=state.tableSort===key&amp;&amp;state.tableDir===&#x27;descending&#x27;?&#x27;ascending&#x27;:&#x27;descending&#x27;;state.tableSort=key;state.page=0;render();}
+      else if(kind===&#x27;store&#x27;){setFilter(&#x27;receipt&#x27;,data.receipts.find(r=&gt;r.store===key).id);}
+      else if([&#x27;category&#x27;,&#x27;product&#x27;,&#x27;receipt&#x27;].includes(kind)){setFilter(kind,key);}
+      save();
+    });
+    $(&#x27;rx-close-detail&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{state.selected=null;render();save();});
+    $(&#x27;rx-prev&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{state.page=Math.max(0,state.page-1);render();save();});
+    $(&#x27;rx-next&#x27;).addEventListener(&#x27;click&#x27;,()=&gt;{state.page++;render();save();});
+    window.addEventListener(&#x27;openai:set_globals&#x27;,e=&gt;{const saved=e.detail?.globals?.widgetState;if(saved){state=normalizeState(saved.privateContent?.receiptsState||saved.modelContent?.receiptsState,data);render();}});
+    render();
+  })();
+  &lt;/script&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+(() =&gt; {
+  let positioningReady = window.FloatingUIDOM
+    ? Promise.resolve(window.FloatingUIDOM)
+    : null;
+  const loadScript = (src) =&gt; new Promise((resolve, reject) =&gt; {
+    const script = document.createElement(&quot;script&quot;);
+    script.src = src;
+    script.onload = resolve;
+    script.onerror = () =&gt; {
+      script.remove();
+      reject(new Error(&quot;Could not load tooltip positioning&quot;));
+    };
+    document.head.appendChild(script);
+  });
+  const loadPositioning = async () =&gt; {
+    const domUrl = &quot;https://unpkg.com/@floating-ui/dom@1.7.4/dist/floating-ui.dom.umd.min.js&quot;;
+    const preload = document.createElement(&quot;link&quot;);
+    preload.rel = &quot;preload&quot;;
+    preload.as = &quot;script&quot;;
+    preload.href = domUrl;
+    document.head.appendChild(preload);
+    try {
+      if (window.FloatingUICore == null) {
+        await loadScript(&quot;https://unpkg.com/@floating-ui/core@1.7.3/dist/floating-ui.core.umd.min.js&quot;);
+      }
+      await loadScript(domUrl);
+      return window.FloatingUIDOM;
+    } finally {
+      preload.remove();
+    }
+  };
+  const getPositioning = () =&gt; positioningReady ??= loadPositioning().catch((error) =&gt; {
+    positioningReady = null;
+    throw error;
+  });
+  const tooltipPlacements = new Set([&quot;top&quot;, &quot;right&quot;, &quot;bottom&quot;, &quot;left&quot;]);
+  const tooltipId = `codex-visualization-tooltip-${
+    window.crypto?.randomUUID?.() ?? Date.now().toString(36)
+  }`;
+  const tooltipGap = 5;
+  const hoverDelay = 700;
+  const skipDelay = 300;
+  let activeTrigger = null;
+  let pendingTrigger = null;
+  let tooltip = null;
+  let openTimeout = null;
+  let autoUpdateCleanup = null;
+  let positionRequest = 0;
+  let skipDelayUntil = 0;
+  let lastPointerWasTouch = false;
+  let pinnedByTouch = false;
+
+  const getTrigger = (event) =&gt; {
+    for (const target of event.composedPath()) {
+      if (target?.nodeType === Node.ELEMENT_NODE) {
+        const trigger = target.closest(&quot;[data-tooltip]&quot;);
+        if (trigger) return trigger;
+      }
+    }
+    return null;
+  };
+  const containsTarget = (trigger, target) =&gt;
+    target?.nodeType != null &amp;&amp; trigger.contains(target);
+  const getContent = (trigger) =&gt;
+    trigger.getAttribute(&quot;data-tooltip&quot;)?.trim() ?? &quot;&quot;;
+  const getPlacement = (trigger) =&gt; {
+    const placement = trigger.getAttribute(&quot;data-tooltip-placement&quot;);
+    return tooltipPlacements.has(placement) ? placement : &quot;top&quot;;
+  };
+  const getTooltip = () =&gt; {
+    if (tooltip == null) {
+      tooltip = document.createElement(&quot;div&quot;);
+      tooltip.id = tooltipId;
+      tooltip.className = &quot;tooltip&quot;;
+      tooltip.setAttribute(&quot;role&quot;, &quot;tooltip&quot;);
+    }
+    return tooltip;
+  };
+  const setDescribedBy = (trigger, described) =&gt; {
+    const ids = new Set(
+      (trigger.getAttribute(&quot;aria-describedby&quot;) ?? &quot;&quot;)
+        .split(/\s+/)
+        .filter(Boolean),
+    );
+    if (described) {
+      ids.add(tooltipId);
+    } else {
+      ids.delete(tooltipId);
+    }
+    if (ids.size === 0) {
+      trigger.removeAttribute(&quot;aria-describedby&quot;);
+    } else {
+      trigger.setAttribute(&quot;aria-describedby&quot;, [...ids].join(&quot; &quot;));
+    }
+  };
+  const clearOpenTimeout = () =&gt; {
+    if (openTimeout != null) {
+      window.clearTimeout(openTimeout);
+      openTimeout = null;
+    }
+    pendingTrigger = null;
+  };
+  const closeTooltip = (activateSkipDelay = true) =&gt; {
+    clearOpenTimeout();
+    pinnedByTouch = false;
+    positionRequest += 1;
+    autoUpdateCleanup?.();
+    autoUpdateCleanup = null;
+    if (activeTrigger == null) {
+      return;
+    }
+    setDescribedBy(activeTrigger, false);
+    activeTrigger = null;
+    tooltip?.remove();
+    if (activateSkipDelay) {
+      skipDelayUntil = Date.now() + skipDelay;
+    }
+  };
+  const updatePosition = (trigger, floating, { computePosition, flip, offset, shift, size }) =&gt; {
+    const request = ++positionRequest;
+    void computePosition(trigger, floating, {
+      middleware: [
+        offset(tooltipGap),
+        flip({ padding: tooltipGap }),
+        shift({ padding: tooltipGap }),
+        size({
+          padding: tooltipGap,
+          apply({ availableHeight, availableWidth, elements }) {
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-width&quot;,
+              `${Math.max(0, availableWidth)}px`,
+            );
+            elements.floating.style.setProperty(
+              &quot;--tooltip-available-height&quot;,
+              `${Math.max(0, availableHeight)}px`,
+            );
+          },
+        }),
+      ],
+      placement: getPlacement(trigger),
+      strategy: &quot;fixed&quot;,
+    })
+      .then(({ x, y }) =&gt; {
+        if (activeTrigger !== trigger || request !== positionRequest) {
+          return;
+        }
+        const scale = window.devicePixelRatio || 1;
+        floating.style.transform = `translate(${Math.round(x * scale) / scale}px, ${Math.round(y * scale) / scale}px)`;
+        floating.style.visibility = &quot;visible&quot;;
+      })
+      .catch(() =&gt; {
+        if (activeTrigger === trigger &amp;&amp; request === positionRequest) {
+          closeTooltip(false);
+        }
+      });
+  };
+  const openTooltip = (trigger) =&gt; {
+    const content = getContent(trigger);
+    if (!trigger.isConnected || content.length === 0) {
+      return;
+    }
+    clearOpenTimeout();
+    if (activeTrigger === trigger) {
+      return;
+    }
+    closeTooltip();
+    const floating = getTooltip();
+    floating.textContent = content;
+    floating.style.visibility = &quot;hidden&quot;;
+    floating.style.transform = &quot;translate(0, 0)&quot;;
+    document.body.appendChild(floating);
+    activeTrigger = trigger;
+    setDescribedBy(trigger, true);
+    const request = positionRequest;
+    void getPositioning().then((positioning) =&gt; {
+      if (request !== positionRequest || !trigger.isConnected) return;
+      autoUpdateCleanup = positioning.autoUpdate(trigger, floating, () =&gt; {
+        updatePosition(trigger, floating, positioning);
+      });
+    }).catch(() =&gt; {
+      if (request === positionRequest) closeTooltip(false);
+    });
+  };
+  const requestOpen = (trigger, immediate = false) =&gt; {
+    if (
+      getContent(trigger).length === 0 ||
+      activeTrigger === trigger ||
+      pendingTrigger === trigger
+    ) {
+      return;
+    }
+    clearOpenTimeout();
+    pendingTrigger = trigger;
+    const delay =
+      immediate || activeTrigger != null || Date.now() &lt; skipDelayUntil
+        ? 0
+        : hoverDelay;
+    if (delay === 0) {
+      openTooltip(trigger);
+      return;
+    }
+    openTimeout = window.setTimeout(() =&gt; {
+      openTimeout = null;
+      pendingTrigger = null;
+      openTooltip(trigger);
+    }, delay);
+  };
+  const handlePointerOpen = (event) =&gt; {
+    if (event.pointerType === &quot;touch&quot;) {
+      return;
+    }
+    const trigger = getTrigger(event);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    requestOpen(trigger);
+  };
+  const handlePointer = (event) =&gt; {
+    lastPointerWasTouch =
+      event.type === &quot;pointerdown&quot; &amp;&amp; event.pointerType === &quot;touch&quot;;
+  };
+  const handleTouchClick = (event) =&gt; {
+    const isTouch = event.pointerType === &quot;touch&quot; || lastPointerWasTouch;
+    lastPointerWasTouch = false;
+    if (!isTouch || event.detail === 0) {
+      return;
+    }
+    const trigger = getTrigger(event);
+    if (
+      trigger == null ||
+      !trigger.isConnected ||
+      getContent(trigger).length === 0 ||
+      (pinnedByTouch &amp;&amp; activeTrigger === trigger)
+    ) {
+      if (pinnedByTouch) {
+        closeTooltip();
+      }
+      return;
+    }
+    openTooltip(trigger);
+    pinnedByTouch = activeTrigger === trigger;
+    window.setTimeout(() =&gt; {
+      if (activeTrigger === trigger &amp;&amp; !trigger.isConnected) {
+        closeTooltip(false);
+      }
+    }, 0);
+  };
+  const handleLeave = (event) =&gt; {
+    if (pinnedByTouch) {
+      return;
+    }
+    const trigger = getTrigger(event);
+    if (trigger == null || containsTarget(trigger, event.relatedTarget)) {
+      return;
+    }
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handleFocusIn = (event) =&gt; {
+    const trigger = getTrigger(event);
+    if (trigger?.matches(&quot;:focus-visible&quot;)) {
+      requestOpen(trigger, true);
+    }
+  };
+  const handleKeyDown = (event) =&gt; {
+    if (event.key === &quot;Escape&quot;) {
+      closeTooltip();
+    }
+  };
+  const handleContextMenu = (event) =&gt; {
+    lastPointerWasTouch = false;
+    const trigger = getTrigger(event);
+    if (activeTrigger === trigger || pendingTrigger === trigger) {
+      closeTooltip();
+    }
+  };
+  const handlers = {
+    pointerover: handlePointerOpen,
+    pointerdown: handlePointer,
+    pointercancel: handlePointer,
+    click: handleTouchClick,
+    pointerout: handleLeave,
+    focusin: handleFocusIn,
+    focusout: handleLeave,
+    keydown: handleKeyDown,
+    contextmenu: handleContextMenu,
+  };
+  const roots = new Map();
+  const handledEvents = new WeakSet();
+  const handleEvent = (event) =&gt; {
+    if (handledEvents.has(event)) return;
+    handledEvents.add(event);
+    handlers[event.type](event);
+  };
+  const discoverRoots = (node) =&gt; {
+    if (node.shadowRoot) listen(node.shadowRoot);
+    for (const element of node.querySelectorAll(&quot;*&quot;)) {
+      if (element.shadowRoot) listen(element.shadowRoot);
+    }
+  };
+  const listen = (root) =&gt; {
+    if (roots.has(root)) return;
+    for (const type of Object.keys(handlers)) root.addEventListener(type, handleEvent);
+    const observer = new window.MutationObserver((records) =&gt; {
+      for (const { addedNodes } of records) {
+        for (const node of addedNodes) {
+          if (node.nodeType === Node.ELEMENT_NODE) discoverRoots(node);
+        }
+      }
+      for (const [root, cleanup] of roots) {
+        if (root.host &amp;&amp; !root.host.isConnected) {
+          cleanup();
+          roots.delete(root);
+        }
+      }
+      if (activeTrigger &amp;&amp; !activeTrigger.isConnected) closeTooltip(false);
+    });
+    observer.observe(root, { childList: true, subtree: true });
+    roots.set(root, () =&gt; {
+      observer.disconnect();
+      for (const type of Object.keys(handlers)) root.removeEventListener(type, handleEvent);
+    });
+    discoverRoots(root);
+  };
+  const destroy = () =&gt; {
+    closeTooltip(false);
+    lastPointerWasTouch = false;
+    for (const cleanup of roots.values()) cleanup();
+    roots.clear();
+    tooltip = null;
+  };
+
+  // Events between children of one shadow root never reach the document.
+  listen(document);
+  window.addEventListener(&quot;pagehide&quot;, destroy, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-tabs&quot;&gt;
+(() =&gt; {
+  const selector = &#x27;.nav[role=&quot;tablist&quot;] [role=&quot;tab&quot;]&#x27;;
+  const disabled = &#x27;:disabled,[aria-disabled=&quot;true&quot;]&#x27;;
+  const selectTab = (selected) =&gt; {
+    const panelId = selected.getAttribute(&quot;aria-controls&quot;);
+    for (const tab of selected.closest(&#x27;[role=&quot;tablist&quot;]&#x27;).querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;)) {
+      const active = tab === selected;
+      tab.classList.toggle(&quot;active&quot;, active);
+      tab.setAttribute(&quot;aria-selected&quot;, String(active));
+      const id = tab.getAttribute(&quot;aria-controls&quot;);
+      const panel = id &amp;&amp; document.getElementById(id);
+      if (panel != null) {
+        panel.hidden = id !== panelId;
+        if (!panel.hidden &amp;&amp; selected.id) {
+          panel.setAttribute(&quot;aria-labelledby&quot;, selected.id);
+        }
+      }
+    }
+  };
+  const interact = (event) =&gt; {
+    const tab = event.target?.closest?.(selector);
+    if (event.defaultPrevented || tab == null || tab.matches(disabled)) {
+      return;
+    }
+    if (event.type === &quot;click&quot;) {
+      selectTab(tab);
+      return;
+    }
+    const tabs = Array.from(
+      tab.closest(&#x27;[role=&quot;tablist&quot;]&#x27;).querySelectorAll(&#x27;[role=&quot;tab&quot;]&#x27;),
+    ).filter((candidate) =&gt; !candidate.matches(disabled));
+    const current = tabs.indexOf(tab);
+    let next;
+    if (event.key === &quot;ArrowRight&quot; || event.key === &quot;ArrowDown&quot;) {
+      next = (current + 1) % tabs.length;
+    } else if (event.key === &quot;ArrowLeft&quot; || event.key === &quot;ArrowUp&quot;) {
+      next = (current + tabs.length - 1) % tabs.length;
+    } else if (event.key === &quot;Home&quot;) {
+      next = 0;
+    } else if (event.key === &quot;End&quot;) {
+      next = tabs.length - 1;
+    } else {
+      return;
+    }
+    event.preventDefault();
+    tabs[next].focus();
+    selectTab(tabs[next]);
+  };
+
+  for (const list of document.querySelectorAll(&#x27;.nav[role=&quot;tablist&quot;]&#x27;)) {
+    const selected =
+      list.querySelector(&#x27;[role=&quot;tab&quot;][aria-selected=&quot;true&quot;]&#x27;) ??
+      list.querySelector(&#x27;[role=&quot;tab&quot;].active&#x27;) ??
+      list.querySelector(&#x27;[role=&quot;tab&quot;]&#x27;);
+    if (selected != null) {
+      selectTab(selected);
+    }
+  }
+  document.addEventListener(&quot;click&quot;, interact);
+  document.addEventListener(&quot;keydown&quot;, interact);
+  window.addEventListener(&quot;pagehide&quot;, () =&gt; {
+    document.removeEventListener(&quot;click&quot;, interact);
+    document.removeEventListener(&quot;keydown&quot;, interact);
+  }, { once: true });
+})();
+&lt;/script&gt;
+&lt;script id=&quot;codex-visualization-carousel&quot;&gt;
+  (() =&gt; {
+    for (const root of document.querySelectorAll(&quot;.viz-carousel&quot;)) {
+      const panels = Array.from(
+        root.querySelectorAll(&quot;:scope &gt; [data-variant]&quot;),
+      );
+      if (panels.length === 0) {
+        continue;
+      }
+      root.setAttribute(&quot;role&quot;, &quot;group&quot;);
+      panels.forEach((panel, index) =&gt; {
+        panel.hidden = index !== 0;
+        panel.setAttribute(&quot;role&quot;, &quot;group&quot;);
+        if (!panel.hasAttribute(&quot;aria-label&quot;)) {
+          panel.setAttribute(&quot;aria-label&quot;, panel.dataset.variant);
+        }
+      });
+      root.dataset.activeVariant = panels[0].dataset.variant;
+      if (panels.length === 1) {
+        continue;
+      }
+
+      const controls = document.createElement(&quot;div&quot;);
+      controls.className = &quot;viz-carousel-controls&quot;;
+      // Portable copy of the settings dropdown&#x27;s legacy glyph; no 14px icon-package preset matches it.
+      // https://github.com/openai/openai/blob/master/codex/codex-apps/webview/src/icons/chevron.svg
+      controls.innerHTML = `
+      &lt;button type=&quot;button&quot; class=&quot;viz-carousel-previous cursor-interaction&quot;&gt;&lt;i data-lucide=&quot;chevron-left&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;
+      &lt;details class=&quot;viz-carousel-picker&quot;&gt;
+        &lt;summary class=&quot;cursor-interaction&quot;&gt;
+          &lt;span class=&quot;viz-carousel-count tabular-nums&quot;&gt;&lt;/span&gt;
+          &lt;span class=&quot;viz-carousel-name&quot;&gt;&lt;/span&gt;
+          &lt;svg class=&quot;viz-carousel-caret&quot; width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 20 21&quot; fill=&quot;none&quot; aria-hidden=&quot;true&quot; focusable=&quot;false&quot;&gt;
+            &lt;path d=&quot;M15.2793 7.71101C15.539 7.45131 15.961 7.45131 16.2207 7.71101C16.4804 7.97071 16.4804 8.39272 16.2207 8.65242L10.4707 14.4024C10.211 14.6621 9.78902 14.6621 9.52932 14.4024L3.77932 8.65242L3.69436 8.54792C3.52385 8.28979 3.55205 7.93828 3.77932 7.71101C4.00659 7.48374 4.3581 7.45554 4.61623 7.62605L4.72073 7.71101L10 12.9903L15.2793 7.71101Z&quot; fill=&quot;currentColor&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;0.6&quot; /&gt;
+          &lt;/svg&gt;
+        &lt;/summary&gt;
+        &lt;div class=&quot;viz-carousel-options&quot;&gt;&lt;/div&gt;
+      &lt;/details&gt;
+      &lt;button type=&quot;button&quot; class=&quot;viz-carousel-next cursor-interaction&quot;&gt;&lt;i data-lucide=&quot;chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;&lt;/button&gt;`;
+      const previous = controls.querySelector(&quot;.viz-carousel-previous&quot;);
+      const next = controls.querySelector(&quot;.viz-carousel-next&quot;);
+      const picker = controls.querySelector(&quot;.viz-carousel-picker&quot;);
+      const summary = picker.querySelector(&quot;summary&quot;);
+      const count = controls.querySelector(&quot;.viz-carousel-count&quot;);
+      const name = controls.querySelector(&quot;.viz-carousel-name&quot;);
+      const options = controls.querySelector(&quot;.viz-carousel-options&quot;);
+      const status = document.createElement(&quot;span&quot;);
+      status.className = &quot;sr-only&quot;;
+      status.setAttribute(&quot;role&quot;, &quot;status&quot;);
+      status.setAttribute(&quot;aria-live&quot;, &quot;polite&quot;);
+      status.setAttribute(&quot;aria-atomic&quot;, &quot;true&quot;);
+      previous.setAttribute(
+        &quot;aria-label&quot;,
+        root.dataset.previousLabel ?? &quot;Previous variant&quot;,
+      );
+      next.setAttribute(&quot;aria-label&quot;, root.dataset.nextLabel ?? &quot;Next variant&quot;);
+
+      let active = 0;
+      let mousePointerId = null;
+      let summaryPointerHandled = false;
+      summary.addEventListener(&quot;pointerdown&quot;, (event) =&gt; {
+        summaryPointerHandled =
+          event.pointerType === &quot;mouse&quot; &amp;&amp; event.button === 0 &amp;&amp; !event.ctrlKey;
+        if (!summaryPointerHandled) {
+          return;
+        }
+        event.preventDefault();
+        summary.focus({ preventScroll: true });
+        picker.open = !picker.open;
+        mousePointerId = picker.open ? event.pointerId : null;
+      });
+      summary.addEventListener(&quot;click&quot;, (event) =&gt; {
+        if (summaryPointerHandled &amp;&amp; event.detail &gt; 0) {
+          event.preventDefault();
+        }
+      });
+      const choices = panels.map((panel, index) =&gt; {
+        const choice = document.createElement(&quot;button&quot;);
+        choice.type = &quot;button&quot;;
+        choice.className = &quot;cursor-interaction&quot;;
+        choice.textContent = panel.dataset.variant;
+        choice.addEventListener(&quot;click&quot;, () =&gt; {
+          select(index);
+          summary.focus();
+        });
+        choice.addEventListener(&quot;pointerup&quot;, (event) =&gt; {
+          if (
+            picker.open &amp;&amp;
+            event.pointerType === &quot;mouse&quot; &amp;&amp;
+            event.button === 0 &amp;&amp;
+            event.pointerId === mousePointerId
+          ) {
+            choice.click();
+          }
+        });
+        options.appendChild(choice);
+        return choice;
+      });
+      const select = (index) =&gt; {
+        const changed = active !== index;
+        active = index;
+        panels.forEach((panel, position) =&gt; {
+          panel.hidden = position !== active;
+          choices[position].setAttribute(
+            &quot;aria-current&quot;,
+            String(position === active),
+          );
+        });
+        root.dataset.activeVariant = panels[active].dataset.variant;
+        count.textContent = `${active + 1} / ${panels.length}`;
+        name.textContent = panels[active].dataset.variant;
+        picker.open = false;
+        mousePointerId = null;
+        if (changed) {
+          status.textContent = `${count.textContent}: ${name.textContent}`;
+        }
+      };
+      previous.addEventListener(&quot;click&quot;, () =&gt;
+        select((active + panels.length - 1) % panels.length),
+      );
+      next.addEventListener(&quot;click&quot;, () =&gt;
+        select((active + 1) % panels.length),
+      );
+      picker.addEventListener(&quot;keydown&quot;, (event) =&gt; {
+        if (event.key === &quot;Escape&quot; &amp;&amp; picker.open) {
+          event.preventDefault();
+          picker.open = false;
+          mousePointerId = null;
+          summary.focus();
+          return;
+        }
+        if (event.altKey || event.ctrlKey || event.metaKey) {
+          return;
+        }
+        const index = choices.indexOf(document.activeElement);
+        let nextIndex;
+        if (event.key === &quot;ArrowDown&quot;) {
+          nextIndex = index &lt; 0 ? active : (index + 1) % choices.length;
+        } else if (event.key === &quot;ArrowUp&quot;) {
+          nextIndex = index &lt; 0 ? active : (index + choices.length - 1) % choices.length;
+        } else if (picker.open &amp;&amp; event.key === &quot;Home&quot;) {
+          nextIndex = 0;
+        } else if (picker.open &amp;&amp; event.key === &quot;End&quot;) {
+          nextIndex = choices.length - 1;
+        } else {
+          return;
+        }
+        event.preventDefault();
+        picker.open = true;
+        choices[nextIndex].focus();
+      });
+      picker.addEventListener(&quot;focusout&quot;, (event) =&gt; {
+        if (!picker.contains(event.relatedTarget)) {
+          picker.open = false;
+          mousePointerId = null;
+        }
+      });
+      const dismiss = (event) =&gt; {
+        if (!summary.contains(event.target)) {
+          mousePointerId = null;
+        }
+        if (!picker.contains(event.target)) {
+          picker.open = false;
+        }
+      };
+      const endPointerSelection = () =&gt; {
+        mousePointerId = null;
+      };
+      const sizePicker = () =&gt; {
+        root.style.setProperty(
+          &quot;--viz-carousel-picker-height&quot;,
+          `${picker.open ? options.offsetHeight : 0}px`,
+        );
+      };
+      picker.addEventListener(&quot;toggle&quot;, sizePicker);
+      window.addEventListener(&quot;resize&quot;, sizePicker);
+      document.addEventListener(&quot;pointerdown&quot;, dismiss);
+      document.addEventListener(&quot;pointerup&quot;, endPointerSelection);
+      document.addEventListener(&quot;pointercancel&quot;, endPointerSelection);
+      window.addEventListener(&quot;blur&quot;, endPointerSelection);
+      window.addEventListener(
+        &quot;pagehide&quot;,
+        () =&gt; {
+          document.removeEventListener(&quot;pointerdown&quot;, dismiss);
+          document.removeEventListener(&quot;pointerup&quot;, endPointerSelection);
+          document.removeEventListener(&quot;pointercancel&quot;, endPointerSelection);
+          window.removeEventListener(&quot;blur&quot;, endPointerSelection);
+          window.removeEventListener(&quot;resize&quot;, sizePicker);
+        },
+        { once: true },
+      );
+      root.append(controls, status);
+      select(0);
+    }
+  })();
+&lt;/script&gt;
+&lt;!-- No icon library needed: this dashboard has no external icons. --&gt;
+&lt;script&gt;
+(() =&gt; {
+  const initialize = () =&gt; {
+    globalThis.lucide?.createIcons({ attrs: { width: 16, height: 16 } });
+  };
+  if (globalThis.lucide != null) {
+    initialize();
+    return;
+  }
+  document
+    .getElementById(&quot;codex-visualization-lucide&quot;)
+    ?.addEventListener(&quot;load&quot;, initialize, { once: true });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe>
+
+<script>(() => {
+  const frame = document.getElementById("codex-visualization");
+  if (!(frame instanceof HTMLIFrameElement)) {
+    return;
+  }
+  const isShare = document.documentElement.classList.contains(
+    "visualization-share-root",
+  );
+  let viewportHeight = globalThis.innerHeight;
+  let sizeFingerprint = null;
+  let sizeWriteTimeout;
+  let lastSize = null;
+  let pendingSize = null;
+  const storageKey = `codex:visualization-widget-state-v2:${JSON.stringify([
+    globalThis.location.pathname,
+    globalThis.location.search,
+  ])}`;
+  const sizeStorageKey = `${storageKey}:share-size-v1`;
+  const parseState = (serializedState) => {
+    if (
+      typeof serializedState !== "string" ||
+      new TextEncoder().encode(serializedState).length > 16 * 1024
+    ) {
+      throw new TypeError(
+        "Widget state must be a JSON object of at most 16 KiB",
+      );
+    }
+    /** @type {unknown} */
+    const state = JSON.parse(serializedState);
+    if (
+      state == null ||
+      typeof state !== "object" ||
+      Array.isArray(state) ||
+      ("imageIds" in state &&
+        (!Array.isArray(state.imageIds) || state.imageIds.length > 0))
+    ) {
+      throw new TypeError("Widget state must be a JSON object");
+    }
+    const storedState = { modelContent: null, privateContent: null, ...state };
+    const canonicalState = JSON.stringify(
+      storedState,
+      (_key, /** @type {unknown} */ value) => {
+        if (typeof value === "number" && !Number.isFinite(value)) {
+          throw new TypeError("Widget state must contain finite numbers");
+        }
+        return value;
+      },
+    );
+    if (new TextEncoder().encode(canonicalState).length > 16 * 1024) {
+      throw new TypeError(
+        "Widget state must be a JSON object of at most 16 KiB",
+      );
+    }
+    return storedState;
+  };
+  let storage = null;
+  let state = null;
+  try {
+    const localStorage = globalThis.localStorage;
+    const probeKey = `${storageKey}:probe`;
+    localStorage.setItem(probeKey, "1");
+    localStorage.removeItem(probeKey);
+    storage = localStorage;
+    const savedState = storage.getItem(storageKey);
+    if (savedState != null) {
+      try {
+        state = parseState(savedState);
+      } catch {
+        // Invalid saved state does not disable future writes.
+      }
+    }
+  } catch {
+    storage = null;
+  }
+  const persistSize = () => {
+    globalThis.clearTimeout(sizeWriteTimeout);
+    if (pendingSize == null) {
+      return;
+    }
+    try {
+      storage?.setItem(sizeStorageKey, pendingSize);
+    } catch {
+      // A denied or full cache must not affect the visualization.
+    }
+    pendingSize = null;
+  };
+  if (isShare) {
+    globalThis.addEventListener("pagehide", persistSize);
+  }
+  const initialGlobals = {
+    widgetState: state,
+    statePersistence: storage == null ? "none" : "local",
+  };
+
+  const channel = new MessageChannel();
+  channel.port1.addEventListener("message", (event) => {
+    const data = event.data;
+    if (typeof data !== "object" || data == null) {
+      return;
+    }
+    if (data.type === "widget-state-write") {
+      if (!Number.isSafeInteger(data.id) || data.id <= 0) {
+        return;
+      }
+      let ok = false;
+      try {
+        if (storage != null) {
+          const state = parseState(data.state);
+          storage.setItem(storageKey, JSON.stringify(state));
+          ok = true;
+        }
+      } catch {
+        // Storage denial, quota limits, and invalid state return a failed receipt.
+      }
+      channel.port1.postMessage({
+        type: "widget-state-result",
+        id: data.id,
+        ok,
+      });
+      return;
+    }
+    if (data.type === "height") {
+      const height = data.height;
+      if (
+        typeof height !== "number" ||
+        !Number.isFinite(height) ||
+        height < 0
+      ) {
+        return;
+      }
+      if (height <= 10_000) {
+        const width = isShare && storage != null ? frame.clientWidth : null;
+        frame.style.height = Math.ceil(height) + "px";
+        if (isShare && storage != null) {
+          const size = JSON.stringify({
+            fingerprint: sizeFingerprint,
+            width,
+            viewportHeight: globalThis.innerHeight,
+            dark: globalThis.matchMedia("(prefers-color-scheme: dark)").matches,
+            scale: globalThis.devicePixelRatio,
+            height: Math.ceil(height),
+          });
+          if (size !== lastSize) {
+            lastSize = size;
+            pendingSize = size;
+            globalThis.clearTimeout(sizeWriteTimeout);
+            sizeWriteTimeout = globalThis.setTimeout(persistSize, 100);
+          }
+        }
+      }
+      if (isShare) {
+        // Keep unusually tall content accessible without accepting an unbounded height.
+        if (height > 10_000 && Number.parseFloat(frame.style.height) === 0) {
+          frame.style.removeProperty("height");
+        }
+        frame.scrolling = height > 10_000 ? "auto" : "no";
+        document.documentElement.classList.add("visualization-share-ready");
+      }
+      return;
+    }
+    if (data.type === "scroll-to") {
+      const top = data.top;
+      if (
+        typeof top === "number" &&
+        Number.isFinite(top) &&
+        top >= 0 &&
+        globalThis.navigator.userActivation?.isActive === true
+      ) {
+        globalThis.scrollTo({
+          top: Math.ceil(
+            globalThis.scrollY + frame.getBoundingClientRect().top + top,
+          ),
+        });
+      }
+      return;
+    }
+    if (data.type === "open-external") {
+      const rawHref = data.href;
+      if (typeof rawHref !== "string") {
+        return;
+      }
+      let href;
+      try {
+        const url = new URL(rawHref, document.baseURI);
+        if (url.protocol !== "https:") {
+          return;
+        }
+        href = url.href;
+      } catch {
+        return;
+      }
+      if (globalThis.navigator.userActivation?.isActive === true) {
+        const anchor = document.createElement("a");
+        anchor.href = href;
+        anchor.rel = "noopener noreferrer";
+        anchor.target = "_blank";
+        document.body.appendChild(anchor);
+        anchor.click();
+        anchor.remove();
+      }
+      return;
+    }
+    if (data.type === "follow-up") {
+      const prompt = data.prompt;
+      if (
+        typeof prompt !== "string" ||
+        globalThis.navigator.userActivation?.isActive !== true
+      ) {
+        return;
+      }
+      const title = data.title;
+      globalThis.prompt(typeof title === "string" ? title : prompt, prompt);
+    }
+  });
+  channel.port1.start();
+  const srcdoc = frame.dataset.srcdoc;
+  if (srcdoc == null) {
+    return;
+  }
+  globalThis.addEventListener("resize", () => {
+    const height = Number.parseFloat(frame.style.height);
+    if (!isShare && (!Number.isFinite(height) || height <= viewportHeight)) {
+      frame.style.removeProperty("height");
+    }
+    viewportHeight = globalThis.innerHeight;
+    channel.port1.postMessage({ type: "measure" });
+  });
+  frame.addEventListener(
+    "load",
+    () => {
+      frame.contentWindow?.postMessage(
+        { type: "codex-visualization-initialize" },
+        "*",
+        [channel.port2],
+      );
+    },
+    { once: true },
+  );
+  // Match the trusted bootstrap element, not the same text in an authored title.
+  const frameHtml = srcdoc.replace(
+    '<script type="application/json" id="codex-visualization-widget-state">__CODEX_VISUALIZATION_WIDGET_STATE__<\/script>',
+    () =>
+      '<script type="application/json" id="codex-visualization-widget-state">' +
+      JSON.stringify(initialGlobals).replaceAll("<", "\\u003c") +
+      "<\/script>",
+  );
+  if (isShare && storage != null) {
+    // Fingerprint the rendered document, including restored widget state, without
+    // storing its content. This is a layout cache, not a security identity.
+    let hash = 5381;
+    for (let index = 0; index < frameHtml.length; index += 1) {
+      hash = (hash * 33 + frameHtml.charCodeAt(index)) % 4_294_967_296;
+    }
+    sizeFingerprint = hash.toString(36);
+    try {
+      const size = JSON.parse(storage.getItem(sizeStorageKey) ?? "null");
+      if (
+        size?.fingerprint === sizeFingerprint &&
+        size.width === frame.clientWidth &&
+        size.viewportHeight === globalThis.innerHeight &&
+        size.dark ===
+          globalThis.matchMedia("(prefers-color-scheme: dark)").matches &&
+        size.scale === globalThis.devicePixelRatio &&
+        typeof size.height === "number" &&
+        Number.isFinite(size.height) &&
+        size.height >= 0 &&
+        size.height <= 10_000
+      ) {
+        frame.style.height = size.height + "px";
+      }
+    } catch {
+      // Ignore missing or invalid cache entries and measure the live frame.
+    }
+  }
+  frame.srcdoc = frameHtml;
+  delete frame.dataset.srcdoc;
+})();
+</script>
+</body>
+</html>
